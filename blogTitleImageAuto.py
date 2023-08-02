@@ -8,13 +8,13 @@ size = (500, 500)
 background_color = (255, 220, 220)  # 연한 핑크색
 
 # 글꼴 경로와 최소/최대 글씨 크기
-font_path = "./THE소녀감성.ttf"
+font_path = "PATH_OF_THE소녀감성.ttf"
 min_font_size = 20
 max_font_size = 60
 
 # 블로그 이름과 글의 제목
-blog_name = "giftedmbti"
-post_title = "20대 여성 결혼 기념일 선물"
+blog_name = "블로그_이름"
+post_title = "포스트_제목"
 
 # 글씨 색상
 text_color = (0, 0, 0)
@@ -57,6 +57,6 @@ draw.rectangle((0, 0, size[0] - 1, size[1] - 1), outline=border_color, width=bor
 # 이미지 저장
 if not os.path.exists("images"):
     os.makedirs("images")
-filename = os.path.join("images", f"{post_title}.png")
-image.save(filename)
-print(f"{post_title}.png 완성")
+filename = os.path.join("images", f"{post_title}.webp")  # Save as WebP format
+image.save(filename, format="WEBP")
+print(f"{post_title}.webp 완성")
