@@ -8,7 +8,7 @@
 - Pillow 9.5.0
 - 원하는 폰트의 .ttf 파일
 
-## 사용 방법
+## How to use
 
 1. 시스템에 Python 3.x가 설치되어 있는지 확인하세요.
 2. 아래 명령을 사용하여 필요한 라이브러리를 설치하세요:
@@ -28,7 +28,7 @@ pip3 install Pillow==9.5.0
 python blogTitleImageAuto.py
 6. 생성된 이미지는 `images` 디렉토리에 포스트 제목을 파일명으로 하여 저장됩니다.
 
-## 예시
+## Example
 
 블로그 이름이 "내 기술 블로그"이고 포스트 제목이 "파이썬 시작하기"일 경우, 다음과 같이 파라미터를 설정할 수 있습니다:
 
@@ -36,7 +36,7 @@ python blogTitleImageAuto.py
 blog_name = "내 기술 블로그"
 post_title = "파이썬 시작하기"
 ```
-## 생성된 이미지
+## Generated image
 생성된 이미지에는 지정한 블로그 이름과 포스트 제목이 색상이 지정된 배경 위에 가운데 정렬되어 있습니다. 이미지에는 시각적 효과를 위해 테두리가 포함되어 있습니다.
 
 ![생성된 이미지](https://github.com/larry1121/blogimageautomation/assets/78005200/bd6cce5a-d171-4cd4-8cd8-0957aee7caa3)
