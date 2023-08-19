@@ -2,6 +2,9 @@
 
 이 파이썬 스크립트는 블로그 포스트용 대문 이미지를 생성합니다. 포스트 제목과 블로그 이름을 커스터마이징하여 만든 이미지는 블로그 포스트의 멋진 커버 이미지로 사용할 수 있습니다.
 
+![생성된 이미지](https://github.com/larry1121/blogimageautomation/assets/78005200/bd6cce5a-d171-4cd4-8cd8-0957aee7caa3)
+
+
 ## requirements
 
 - Python 3.x
