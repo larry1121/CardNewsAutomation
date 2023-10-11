@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw, ImageFont
 import os
 from remove_emoji import remove_emoji
-from config import FONT_PATH,TEXT_COLOR,BORDER_COLOR,BORDER_WIDTH,BACKGROUND_COLOR
+from config import IMAGE_SIZE, FONT_PATH,TEXT_COLOR,BORDER_COLOR,BORDER_WIDTH,BACKGROUND_COLOR
 
 
 def createTitleCardByInfo(BlogMetaInfo):
@@ -10,7 +10,7 @@ def createTitleCardByInfo(BlogMetaInfo):
     blog_name = BlogMetaInfo['site_name']
 
     # 이미지 크기
-    size = (1080, 1080)  # Instagram card news size
+    size = IMAGE_SIZE
     background_color = BACKGROUND_COLOR
     font_path = FONT_PATH
     min_font_size = 40
