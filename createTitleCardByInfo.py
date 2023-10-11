@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw, ImageFont
 import os
 from remove_emoji import remove_emoji
-
+from config import FONT_PATH,TEXT_COLOR,BORDER_COLOR,BORDER_WIDTH,BACKGROUND_COLOR
 
 
 def createTitleCardByInfo(BlogMetaInfo):
@@ -11,13 +11,13 @@ def createTitleCardByInfo(BlogMetaInfo):
 
     # 이미지 크기
     size = (1080, 1080)  # Instagram card news size
-    background_color = (255, 220, 220)  # 연한 핑크색
-    font_path = "/workspaces/CardNewsAutomation/THE소녀감성.ttf"
+    background_color = BACKGROUND_COLOR
+    font_path = FONT_PATH
     min_font_size = 40
     max_font_size = 120
-    text_color = (0, 0, 0)
-    border_color = (255, 255, 255)
-    border_width = 5
+    text_color = TEXT_COLOR
+    border_color = BORDER_COLOR
+    border_width = BORDER_WIDTH
 
     # 블로그 이름과 글의 제목
     blog_font_size = 60

@@ -15,6 +15,6 @@ def generateCardnewsTitleImageByBlogUrl(blog_url):
 
 if __name__ == "__main__":
     # Test with different blog names and post titles
-    test_url = "https://giftedmbti.tistory.com/184"
+    test_url = "https://ham-in-dev.tistory.com/entry/setting-window-conda2"
     generateCardnewsTitleImageByBlogUrl(test_url)
 
