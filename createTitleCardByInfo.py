@@ -1,15 +1,23 @@
 from PIL import Image, ImageDraw, ImageFont
 import os
 from remove_emoji import remove_emoji
-from config import IMAGE_SIZE, FONT_PATH,TEXT_COLOR,BORDER_COLOR,BORDER_WIDTH,BACKGROUND_COLOR
+from config import IMAGE_SIZE, FONT_PATH, TEXT_COLOR, BORDER_COLOR, BORDER_WIDTH, BACKGROUND_COLOR
 
+def calculate_font_size(font_path, text, max_size, min_size):
+    font_size = max_size
+    font = ImageFont.truetype(font_path, font_size)
+    text_width, _ = font.getsize(text)
+    while font_size > min_size and text_width > 0.8 * IMAGE_SIZE[0]:
+        font_size -= 1
+        font = ImageFont.truetype(font_path, font_size)
+        text_width, _ = font.getsize(text)
+    return font, font_size
 
 def createTitleCardByInfo(BlogMetaInfo):
-
     post_title = remove_emoji(str(BlogMetaInfo['title']))
     blog_name = BlogMetaInfo['site_name']
 
-    # 이미지 크기
+    # 이미지 설정
     size = IMAGE_SIZE
     background_color = BACKGROUND_COLOR
     font_path = FONT_PATH
@@ -26,15 +34,8 @@ def createTitleCardByInfo(BlogMetaInfo):
     image = Image.new("RGB", size, background_color)
 
     # 글자 크기 계산
-    font_size = max_font_size
-    font = ImageFont.truetype(font_path, font_size)
-    text_width, text_height = 0, 0
-    while font_size > min_font_size:
-        font = ImageFont.truetype(font_path, font_size)
-        text_width, text_height = font.getsize(post_title)
-        if text_width < 0.8 * size[0]:
-            break
-        font_size -= 1
+    font, font_size = calculate_font_size(font_path, post_title, max_font_size, min_font_size)
+    text_width, text_height = font.getsize(post_title)
 
     # 블로그 이름의 폰트 크기 계산
     blog_font = ImageFont.truetype(font_path, blog_font_size)
@@ -58,8 +59,6 @@ def createTitleCardByInfo(BlogMetaInfo):
     filename = os.path.join("images", f"{post_title}.jpg")  # Save as JPG format
     image.save(filename, format="JPEG")
     print(f"{post_title}.jpg 완성")
-
-
 
 if __name__ == "__main__":
     # Test with different blog names and post titles

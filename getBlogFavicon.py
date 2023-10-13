@@ -2,7 +2,9 @@ import requests
 
 def getBlogFavicon(website_url):
     # Favicons 다운로드 URL 생성
-    favicon_url = f'http://www.google.com/s2/favicons?domain={website_url}'
+
+    size=128
+    favicon_url = f'https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url={website_url}&size={size}'
 
     try:
         # 이미지 다운로드
@@ -24,7 +26,7 @@ def getBlogFavicon(website_url):
 
 if __name__ == "__main__":
     # 예시: 다운로드 받을 웹사이트 주소
-    website_url = 'https://giftedmbti.tistory.com/167'
+    website_url = 'https://giftedmbti.tistory.com/'
 
     # 파비콘 다운로드
     getBlogFavicon(website_url)
