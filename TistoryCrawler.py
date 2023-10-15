@@ -3,6 +3,8 @@ import re
 from BlogCrawler import BlogCrawler
 
 
+
+
 class TistoryCrawler(BlogCrawler):
     def __init__(self, url):
         BlogCrawler.__init__(self, url)
@@ -23,7 +25,7 @@ class TistoryCrawler(BlogCrawler):
                 is_index_valid = start_index != -1 and end_index != -1
 
                 if is_index_valid :
-                    cleaned_html = element_html[start_index:end_index]
+                    cleaned_html = element_html[start_index - 13:end_index]
                     # Use regular expression to remove HTML tags
                     # clean_text = re.sub('<.*?>', '', cleaned_html)
                     return cleaned_html
