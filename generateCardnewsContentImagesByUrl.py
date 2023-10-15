@@ -24,19 +24,12 @@ if __name__ == "__main__":
 
 
 # Traceback (most recent call last):
-#   File "/home/codespace/.python/current/lib/python3.10/site-packages/PIL/Image.py", line 2409, in save
-#     format = EXTENSION[ext]
-# KeyError: ''
-
-# The above exception was the direct cause of the following exception:
-
-# Traceback (most recent call last):
 #   File "/workspaces/CardNewsAutomation/generateCardnewsContentImagesByUrl.py", line 23, in <module>
 #     generateCardnewsContentImages(test_url)
 #   File "/workspaces/CardNewsAutomation/generateCardnewsContentImagesByUrl.py", line 16, in generateCardnewsContentImages
 #     generateCardnewsContentImageByContent(content,ImageCount)
-#   File "/workspaces/CardNewsAutomation/generateCardnewsContentImageByContent.py", line 55, in generateCardnewsContentImageByContent
-#     image.save(f"{ImageCount}")
-#   File "/home/codespace/.python/current/lib/python3.10/site-packages/PIL/Image.py", line 2412, in save
-#     raise ValueError(msg) from e
-# ValueError: unknown file extension: 
+#   File "/workspaces/CardNewsAutomation/generateCardnewsContentImageByContent.py", line 39, in generateCardnewsContentImageByContent
+#     wrapped_text = wrap_text(draw, text, font, max_text_width)
+#   File "/workspaces/CardNewsAutomation/generateCardnewsContentImageByContent.py", line 63, in wrap_text
+#     current_line = words[0]
+# IndexError: list index out of range

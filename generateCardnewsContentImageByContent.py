@@ -12,7 +12,7 @@ def generateCardnewsContentImageByContent(html_content, ImageCount):
     draw = ImageDraw.Draw(image)
 
     # 사용할 폰트 설정
-    base_font_size = 30  # 전체적인 글씨 크기를 크게 조절
+    base_font_size = 50  # 전체적인 글씨 크기를 크게 조절
     font = ImageFont.truetype(FONT_PATH, base_font_size)
 
     # HTML 태그에 따라 텍스트 그리기
@@ -28,24 +28,24 @@ def generateCardnewsContentImageByContent(html_content, ImageCount):
             text = tag.text
             wrapped_text = wrap_text(draw, text, font, max_text_width)
             draw.text((50, y_position), wrapped_text, font=font, fill=TEXT_COLOR)
-            y_position += 60 + wrapped_text.count('\n') * 25  # 헤더 다음에 여백 추가
+            y_position += 120 + wrapped_text.count('\n') * 25  # 헤더 다음에 여백 추가
         elif tag_name == 'h3':
             text = tag.text
             wrapped_text = wrap_text(draw, text, font, max_text_width)
             draw.text((50, y_position), wrapped_text, font=font, fill=TEXT_COLOR)
-            y_position += 40 + wrapped_text.count('\n') * 25  # 소제목 다음에 여백 추가
+            y_position += 30 + wrapped_text.count('\n') * 25  # 소제목 다음에 여백 추가
         elif tag_name == 'p':
             text = tag.text
             wrapped_text = wrap_text(draw, text, font, max_text_width)
             draw.text((50, y_position), wrapped_text, font=font, fill=TEXT_COLOR)
-            y_position += 35 + wrapped_text.count('\n') * 25  # 문단 다음에 여백 추가
+            y_position += 120 + wrapped_text.count('\n') * 40  # 문단 다음에 여백 추가
         elif tag_name == 'ul':
-            y_position += 20  # 리스트 전에 여백 추가
+            y_position += 60  # 리스트 전에 여백 추가
             for li_tag in tag.find_all('li'):
-                text = '• ' + li_tag.text
+                text = '- ' + li_tag.text
                 wrapped_text = wrap_text(draw, text, font, max_text_width - 30)  # 간격 고려
                 draw.text((80, y_position), wrapped_text, font=font, fill=TEXT_COLOR)
-                y_position += 35 + wrapped_text.count('\n') * 25  # 리스트 아이템 다음에 여백 추가
+                y_position += 70 + wrapped_text.count('\n') * 25  # 리스트 아이템 다음에 여백 추가
 
     # 테두리 그리기
     border_rect = [(0, 0), (image_width, image_height)]
