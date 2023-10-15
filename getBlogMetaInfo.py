@@ -1,4 +1,4 @@
-from TistoryCrawler import TistoryCrawler
+from crawler.TistoryCrawler import TistoryCrawler
 
 def getBlogMetaInfo(blog_url):
 

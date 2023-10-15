@@ -1,6 +1,6 @@
 from PIL import Image, ImageDraw, ImageFont
 
-from config import IMAGE_SIZE, FONT_PATH, TEXT_COLOR, BORDER_COLOR, BORDER_WIDTH, BACKGROUND_COLOR
+from config import BLOG_NAME_FONT_SIZE, BRANDING_TEXT, BRANDING_TEXT_FONT_SIZE, IMAGE_SIZE, FONT_PATH, BRANDING_CIRCLE_RADIUS,TEXT_COLOR, BORDER_COLOR, BORDER_WIDTH, BACKGROUND_COLOR
 
 def createBrandingCardByInfo(BlogMetaInfo):
     blog_name = BlogMetaInfo['site_name']
@@ -18,11 +18,11 @@ def createBrandingCardByInfo(BlogMetaInfo):
 
     # 원 그리기
     draw = ImageDraw.Draw(image)
-    radius = 150  # 조정 가능
+    radius = BRANDING_CIRCLE_RADIUS  # 조정 가능
     draw.ellipse((center_x - radius, center_y - radius, center_x + radius, center_y + radius), outline="black")
 
     # Favicon 이미지 불러오기
-    favicon = Image.open('favicon.ico')  # 파일명은 위에서 다운로드한 파일명과 일치해야 함
+    favicon = Image.open(f'{blog_name}.ico')  # 파일명은 위에서 다운로드한 파일명과 일치해야 함
 
     # Favicon 크기 조정
     favicon = favicon.resize((radius * 2, radius * 2))
@@ -36,21 +36,21 @@ def createBrandingCardByInfo(BlogMetaInfo):
     image.paste(favicon, (center_x - radius, center_y - radius), mask)
 
     # 텍스트 추가
-    text = f"매일 MBTI 연애 팁을 올립니다.\n팔로우 하시고 매일 연애 팁 받아보세요."
-    font_size = 40  # 조정 가능
+    text = BRANDING_TEXT
+    font_size = BRANDING_TEXT_FONT_SIZE  # 조정 가능
     font = ImageFont.truetype(font_path, font_size)
 
     text_width, text_height = draw.textsize(text, font)
     text_x = (size[0] - text_width) // 2
-    text_y = center_y + radius + 10  # 조정 가능
+    text_y = center_y + radius + 40  # 조정 가능
     draw.text((text_x, text_y), text, font=font, fill="black", align='center')
     
     # 텍스트 추가: 블로그 이름
-    blog_name_font_size = 24  # 조정 가능
+    blog_name_font_size = BLOG_NAME_FONT_SIZE  # 조정 가능
     blog_name_font = ImageFont.truetype(font_path, blog_name_font_size)
     blog_name_width, blog_name_height = draw.textsize(blog_name, blog_name_font)
     blog_name_x = (size[0] - blog_name_width) // 2
-    blog_name_y = center_y - radius - 10  # 조정 가능
+    blog_name_y = center_y - radius - 80  # 조정 가능
     draw.text((blog_name_x, blog_name_y), blog_name, font=blog_name_font, fill="black", align='center')
 
     # 이미지 저장 (as PNG)

@@ -14,7 +14,7 @@ from createBrandingCardByInfo import createBrandingCardByInfo
 from getBlogFavicon import getBlogFavicon
 from getBlogMetaInfo import getBlogMetaInfo
 
-def generateCardnewsBrandingImage(blog_url):
+def generateCardnewsBrandingImageByUrl(blog_url):
     # 블로그 메타 정보 가져오기
     BlogMetaInfo = getBlogMetaInfo(blog_url)
     
@@ -26,5 +26,5 @@ def generateCardnewsBrandingImage(blog_url):
     
 
 if __name__ == "__main__":
-    blog_url = "https://ham-in-dev.tistory.com/entry/setting-window-conda2"  # 실제 블로그 URL로 변경
-    generateCardnewsBrandingImage(blog_url)
+    blog_url = "https://giftedmbti.tistory.com/184"  # 실제 블로그 URL로 변경
+    generateCardnewsBrandingImageByUrl(blog_url)

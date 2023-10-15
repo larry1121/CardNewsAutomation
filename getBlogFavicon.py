@@ -1,5 +1,7 @@
 import requests
 
+from getBlogMetaInfo import getBlogMetaInfo
+
 def getBlogFavicon(website_url):
     # Favicons 다운로드 URL 생성
 
@@ -10,9 +12,13 @@ def getBlogFavicon(website_url):
         # 이미지 다운로드
         response = requests.get(favicon_url)
         response.raise_for_status()  # 에러 발생 시 예외 처리
+        
+        # blog_name 가져오기
+        BlogMetaInfo = getBlogMetaInfo(website_url)
+        blog_name = BlogMetaInfo['site_name']
 
         # 파일로 저장
-        file_name = 'favicon.ico'
+        file_name = f'{blog_name}.ico'
         with open(file_name, 'wb') as file:
             file.write(response.content)
 

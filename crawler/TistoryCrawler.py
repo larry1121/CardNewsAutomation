@@ -1,5 +1,7 @@
 import re
+
 from BlogCrawler import BlogCrawler
+
 
 class TistoryCrawler(BlogCrawler):
     def __init__(self, url):
@@ -23,15 +25,15 @@ class TistoryCrawler(BlogCrawler):
                 if is_index_valid :
                     cleaned_html = element_html[start_index:end_index]
                     # Use regular expression to remove HTML tags
-                    clean_text = re.sub('<.*?>', '', cleaned_html)
-                    return clean_text
+                    # clean_text = re.sub('<.*?>', '', cleaned_html)
+                    return cleaned_html
                 
         return ""
 
 # 테스트 코드
 if __name__ == "__main__":
     # 테스트할 Tistory 블로그 URL
-    test_url = "https://bugdict.tistory.com/91"
+    test_url = "https://giftedmbti.tistory.com/184"
 
     # 블로그 크롤러 인스턴스 생성
     crawler = TistoryCrawler(test_url)
