@@ -52,7 +52,7 @@ def generateCardnewsContentImageByContent(html_content, ImageCount):
     draw.rectangle(border_rect, outline=BORDER_COLOR, width=BORDER_WIDTH)
 
     # 이미지 저장
-    image.save(f"{ImageCount}")
+    image.save(f"{ImageCount}.jpg",'png')
 
 def wrap_text(draw, text, font, max_width):
     """
@@ -95,4 +95,4 @@ if __name__ == "__main__":
     '''
 
     # 이미지 생성 및 저장
-    generateCardnewsContentImageByContent(html_content, 'output_image.jpg')
+    generateCardnewsContentImageByContent(html_content, 'output_image')
