@@ -16,7 +16,7 @@ def divideContentsByH2Tag(blog_url):
     # Start dividing content
     temp_content = ""
     for tag in content_div:
-        print(f"{tag}\n\n")
+        # print(f"{tag}\n\n")
         if tag.name == 'h2':
             # Save the previous content if exists
             if temp_content:
