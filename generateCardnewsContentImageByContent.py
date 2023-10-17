@@ -24,6 +24,12 @@ def generateCardnewsContentImageByContent(html_content, ImageCount):
         tag_font_size = get_font_size(tag_name, base_font_size)  # 각 태그별로 글씨 크기 계산
         font = ImageFont.truetype(FONT_PATH, tag_font_size)  # 태그별로 폰트 크기 설정
 
+        if y_position > image_height:
+            # 세로 길이를 초과할 경우 현재 폰트 크기를 80%로 줄임
+            base_font_size = int(base_font_size * 0.8)
+            font = ImageFont.truetype(FONT_PATH, base_font_size)
+            y_position = 100  # 시작 위치 초기화
+
         if tag_name == 'h2':
             text = tag.text
             wrapped_text = wrap_text(draw, text, font, max_text_width)
@@ -52,27 +58,35 @@ def generateCardnewsContentImageByContent(html_content, ImageCount):
     draw.rectangle(border_rect, outline=BORDER_COLOR, width=BORDER_WIDTH)
 
     # 이미지 저장
-    image.save(f"{ImageCount}.jpg",'png')
+    image.save(f"{ImageCount}.jpg", 'png')
 
 def wrap_text(draw, text, font, max_width):
     """
     텍스트를 주어진 가로 길이(max_width)에 맞게 줄바꿈하는 함수
     """
-    lines = []
-    words = text.split()
-    current_line = words[0]
+    try:
+        if not text:
+            return ""
 
-    for word in words[1:]:
-        test_line = current_line + " " + word
-        width, _ = draw.textsize(test_line, font)
-        if width <= max_width:
-            current_line = test_line
-        else:
-            lines.append(current_line)
-            current_line = word
+        lines = []
+        words = text.split()
+        current_line = words[0]
 
-    lines.append(current_line)
-    return '\n'.join(lines)
+        for word in words[1:]:
+            test_line = current_line + " " + word
+            width, _ = draw.textsize(test_line, font)
+            if width <= max_width:
+                current_line = test_line
+            else:
+                lines.append(current_line)
+                current_line = word
+
+        lines.append(current_line)
+        return '\n'.join(lines)
+
+    except IndexError:
+        # 리스트 인덱스가 범위를 벗어날 때의 예외 처리
+        return ""
 
 def get_font_size(tag_name, base_size):
     """
@@ -84,15 +98,11 @@ def get_font_size(tag_name, base_size):
 if __name__ == "__main__":
     # 예제 HTML
     html_content = '''
-    <h2 data-ke-size="size26">INTJ의 관계 특징 3: 독립적인 성향</h2>
-    <p data-ke-size="size16">INTJ들은 독립적이고 자주 혼자서 자신의 시간을 즐기는 경향이 있어요. 이들은 자신만의 공간과 시간을 중요하게 생각하기 때문에 다른 사람들과의 관계에서도 독립적인 면모가 드러날 수 있어요.</p>
-    <p data-ke-size="size16">자신만의 시간을 존중해주는 것이 INTJ와의 관계를 발전시키는 데 도움이 될 수 있어요. INTJ와 함께하는 시간이 특별하고 의미 있는 시간이 되도록 배려해보세요.</p>
-    <h3 data-ke-size="size23">INTJ와의 관계에서 고려해야 할 점:</h3>
-    <ul data-ke-list-type="disc" style="list-style-type: disc;">
-    <li>INTJ의 개인 시간과 공간을 존중하기</li>
-    <li>함께할 때는 특별하고 의미 있는 경험을 제공하여 INTJ와의 연결을 강화하기</li>
-    </ul>
-    '''
+    <h2 data-ke-size="size26">마무리하며</h2>\n
+    <p data-ke-size="size16">오늘은 INTJ의 관계적 특징에 대해 알아보았어요. 이들은 엄격한 표현과 높은 기준, 감정적인 소통의 어려움, 독립적인 성향, 그리고 충돌 상황에서의 대처 방식 등에서 독특한 특징을 보입니다. INTJ와의 관계에서 이러한 특징을 이해하고 존중한다면 보다 깊은 연결을 형성할 수 있을 거에요. 🤝</p>\n
+    <p data-ke-size="size16">다음에는 또 다른 MBTI 성격 유형에 대해서 알아보도록 할게요! 😊</p>\n
+    <p data-ke-size="size16">\xa0</p>\n
+    <p data-ke-size="size16">\xa0</p>\n'''
 
     # 이미지 생성 및 저장
     generateCardnewsContentImageByContent(html_content, 'output_image')
