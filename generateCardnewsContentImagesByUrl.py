@@ -23,13 +23,3 @@ if __name__ == "__main__":
     generateCardnewsContentImages(test_url)
 
 
-# Traceback (most recent call last):
-#   File "/workspaces/CardNewsAutomation/generateCardnewsContentImagesByUrl.py", line 23, in <module>
-#     generateCardnewsContentImages(test_url)
-#   File "/workspaces/CardNewsAutomation/generateCardnewsContentImagesByUrl.py", line 16, in generateCardnewsContentImages
-#     generateCardnewsContentImageByContent(content,ImageCount)
-#   File "/workspaces/CardNewsAutomation/generateCardnewsContentImageByContent.py", line 39, in generateCardnewsContentImageByContent
-#     wrapped_text = wrap_text(draw, text, font, max_text_width)
-#   File "/workspaces/CardNewsAutomation/generateCardnewsContentImageByContent.py", line 63, in wrap_text
-#     current_line = words[0]
-# IndexError: list index out of range

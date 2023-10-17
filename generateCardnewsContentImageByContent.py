@@ -20,15 +20,11 @@ def generateCardnewsContentImageByContent(html_content, ImageCount):
     max_text_width = image_width - 100  # 텍스트가 그려질 최대 가로 길이
 
     for tag in soup.find_all(['h2', 'p', 'h3', 'ul', 'li']):
+
         tag_name = tag.name
         tag_font_size = get_font_size(tag_name, base_font_size)  # 각 태그별로 글씨 크기 계산
         font = ImageFont.truetype(FONT_PATH, tag_font_size)  # 태그별로 폰트 크기 설정
-
-        if y_position > image_height:
-            # 세로 길이를 초과할 경우 현재 폰트 크기를 80%로 줄임
-            base_font_size = int(base_font_size * 0.8)
-            font = ImageFont.truetype(FONT_PATH, base_font_size)
-            y_position = 100  # 시작 위치 초기화
+        print(tag)
 
         if tag_name == 'h2':
             text = tag.text
@@ -58,7 +54,7 @@ def generateCardnewsContentImageByContent(html_content, ImageCount):
     draw.rectangle(border_rect, outline=BORDER_COLOR, width=BORDER_WIDTH)
 
     # 이미지 저장
-    image.save(f"{ImageCount}.jpg", 'png')
+    image.save(f"{ImageCount}.jpg",'png')
 
 def wrap_text(draw, text, font, max_width):
     """
@@ -87,6 +83,7 @@ def wrap_text(draw, text, font, max_width):
     except IndexError:
         # 리스트 인덱스가 범위를 벗어날 때의 예외 처리
         return ""
+
 
 def get_font_size(tag_name, base_size):
     """
