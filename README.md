@@ -15,7 +15,7 @@
 
 1. 시스템에 Python 3.x가 설치되어 있는지 확인하세요.
 2. 아래 명령을 사용하여 필요한 라이브러리를 설치하세요:
-pip3 install Pillow==9.5.0
+pip3 install Pillow==9.5.0 , pip install emoji
 3. `"PATH_OF_THE_FONT.ttf"`를 원하는 폰트 파일의 실제 경로로 대체하세요 (TrueType 폰트).
 4. 다음 파라미터를 선호에 맞게 조정하여 스크립트를 커스터마이징하세요:
 - `size`: 생성된 이미지의 크기 (가로, 세로).
