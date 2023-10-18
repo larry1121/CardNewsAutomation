@@ -1,10 +1,11 @@
+import os
 from bs4 import BeautifulSoup
 from PIL import Image, ImageDraw, ImageFont
 from config import BASE_FONT_SIZE, FONT_PATH, IMAGE_SIZE, BACKGROUND_COLOR, TEXT_COLOR, BORDER_COLOR, BORDER_WIDTH
 from remove_emoji import remove_emoji
 
-def generateCardnewsContentImageByContent(html_content, ImageCount):
-
+def generateCardnewsContentImageByContent(html_content, ImageCount,save_path):
+    
     base_font_size = 50
     while True:
         # HTML 파싱
@@ -35,8 +36,11 @@ def generateCardnewsContentImageByContent(html_content, ImageCount):
         border_rect = [(0, 0), (image_width, image_height)]
         draw.rectangle(border_rect, outline=BORDER_COLOR, width=BORDER_WIDTH)
 
+
+
+        filename = os.path.join(save_path, f"{ImageCount}.jpg")  # Save as JPG format
         # 이미지 저장
-        image.save(f"{ImageCount}.jpg", 'png')
+        image.save(filename, 'png')
 
         # Check if the total height exceeds the image height
         if y_position > image_height:
@@ -123,4 +127,4 @@ if __name__ == "__main__":
     <p data-ke-size="size16">\xa0</p>\n'''
 
     # 이미지 생성 및 저장
-    generateCardnewsContentImageByContent(html_content, 'output_image')
+    generateCardnewsContentImageByContent(html_content, 'output_image',"/workspaces/CardNewsAutomation")

@@ -54,9 +54,9 @@ def createTitleCardByInfo(BlogMetaInfo):
     draw.rectangle((0, 0, size[0] - 1, size[1] - 1), outline=border_color, width=border_width)
 
     # 이미지 저장 (as JPG)
-    if not os.path.exists("images"):
-        os.makedirs("images")
-    filename = os.path.join("images", f"{post_title}.jpg")  # Save as JPG format
+    if not os.path.exists(f"{post_title}"):
+        os.makedirs(f"{post_title}")
+    filename = os.path.join(f"{post_title}", f"{post_title}.jpg")  # Save as JPG format
     image.save(filename, format="JPEG")
     print(f"{post_title}.jpg 완성")
 
