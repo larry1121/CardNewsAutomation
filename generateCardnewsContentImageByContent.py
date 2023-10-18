@@ -1,60 +1,81 @@
 from bs4 import BeautifulSoup
 from PIL import Image, ImageDraw, ImageFont
 from config import BASE_FONT_SIZE, FONT_PATH, IMAGE_SIZE, BACKGROUND_COLOR, TEXT_COLOR, BORDER_COLOR, BORDER_WIDTH
+from remove_emoji import remove_emoji
 
 def generateCardnewsContentImageByContent(html_content, ImageCount):
-    # HTML 파싱
-    soup = BeautifulSoup(html_content, 'html.parser')
 
-    # 이미지 크기 및 배경 설정
-    image_width, image_height = IMAGE_SIZE
-    image = Image.new('RGB', (image_width, image_height), BACKGROUND_COLOR)
-    draw = ImageDraw.Draw(image)
+    base_font_size = 50
+    while True:
+        # HTML 파싱
+        soup = BeautifulSoup(html_content, 'html.parser')
 
-    # 사용할 폰트 설정
-    base_font_size = 50  # 전체적인 글씨 크기를 크게 조절
-    font = ImageFont.truetype(FONT_PATH, base_font_size)
+        # 이미지 크기 및 배경 설정
+        image_width, image_height = IMAGE_SIZE
+        image = Image.new('RGB', (image_width, image_height), BACKGROUND_COLOR)
+        draw = ImageDraw.Draw(image)
 
-    # HTML 태그에 따라 텍스트 그리기
-    y_position = 100  # 시작 위치
-    max_text_width = image_width - 100  # 텍스트가 그려질 최대 가로 길이
+        # 사용할 폰트 설정
+        
+        font = ImageFont.truetype(FONT_PATH, base_font_size)
 
-    for tag in soup.find_all(['h2', 'p', 'h3', 'ul', 'li']):
+        # HTML 태그에 따라 텍스트 그리기
+        y_position = 100  # 시작 위치
+        max_text_width = image_width - 100  # 텍스트가 그려질 최대 가로 길이
 
-        tag_name = tag.name
-        tag_font_size = get_font_size(tag_name, base_font_size)  # 각 태그별로 글씨 크기 계산
-        font = ImageFont.truetype(FONT_PATH, tag_font_size)  # 태그별로 폰트 크기 설정
-        print(tag)
+        for tag in soup.find_all(['h2', 'p', 'h3', 'ul', 'li']):
+            tag_name = tag.name
+            tag_font_size = get_font_size(tag_name, base_font_size)  # 각 태그별로 글씨 크기 계산
+            font = ImageFont.truetype(FONT_PATH, tag_font_size)  # 태그별로 폰트 크기 설정
+            
 
-        if tag_name == 'h2':
-            text = tag.text
-            wrapped_text = wrap_text(draw, text, font, max_text_width)
-            draw.text((50, y_position), wrapped_text, font=font, fill=TEXT_COLOR)
-            y_position += 120 + wrapped_text.count('\n') * 25  # 헤더 다음에 여백 추가
-        elif tag_name == 'h3':
-            text = tag.text
-            wrapped_text = wrap_text(draw, text, font, max_text_width)
-            draw.text((50, y_position), wrapped_text, font=font, fill=TEXT_COLOR)
-            y_position += 30 + wrapped_text.count('\n') * 25  # 소제목 다음에 여백 추가
-        elif tag_name == 'p':
-            text = tag.text
-            wrapped_text = wrap_text(draw, text, font, max_text_width)
-            draw.text((50, y_position), wrapped_text, font=font, fill=TEXT_COLOR)
-            y_position += 120 + wrapped_text.count('\n') * 40  # 문단 다음에 여백 추가
-        elif tag_name == 'ul':
-            y_position += 60  # 리스트 전에 여백 추가
-            for li_tag in tag.find_all('li'):
-                text = '- ' + li_tag.text
-                wrapped_text = wrap_text(draw, text, font, max_text_width - 30)  # 간격 고려
-                draw.text((80, y_position), wrapped_text, font=font, fill=TEXT_COLOR)
-                y_position += 70 + wrapped_text.count('\n') * 25  # 리스트 아이템 다음에 여백 추가
+            y_position = draw_tag(draw, tag, tag_name, font, y_position, max_text_width)
 
-    # 테두리 그리기
-    border_rect = [(0, 0), (image_width, image_height)]
-    draw.rectangle(border_rect, outline=BORDER_COLOR, width=BORDER_WIDTH)
+        # 테두리 그리기
+        border_rect = [(0, 0), (image_width, image_height)]
+        draw.rectangle(border_rect, outline=BORDER_COLOR, width=BORDER_WIDTH)
 
-    # 이미지 저장
-    image.save(f"{ImageCount}.jpg",'png')
+        # 이미지 저장
+        image.save(f"{ImageCount}.jpg", 'png')
+
+        # Check if the total height exceeds the image height
+        if y_position > image_height:
+            # Decrease font size and regenerate the image
+            base_font_size = base_font_size-1
+            print(f"decreasing fontsize... ImageCount : {ImageCount}, current font size : {base_font_size}")
+        else:
+            print(f"{ImageCount}.jpg generated, font size : {base_font_size}")
+            break
+
+
+def draw_tag(draw, tag, tag_name, font, y_position, max_text_width):
+    """
+    Draw text for a specific HTML tag
+    """
+    if tag_name == 'h2':
+        text = remove_emoji(tag.text)
+        wrapped_text = wrap_text(draw, text, font, max_text_width)
+        draw.text((50, y_position), wrapped_text, font=font, fill=TEXT_COLOR)
+        y_position += 120 + wrapped_text.count('\n') * 25  # 헤더 다음에 여백 추가
+    elif tag_name == 'h3':
+        text = remove_emoji(tag.text)
+        wrapped_text = wrap_text(draw, text, font, max_text_width)
+        draw.text((50, y_position), wrapped_text, font=font, fill=TEXT_COLOR)
+        y_position += 30 + wrapped_text.count('\n') * 25  # 소제목 다음에 여백 추가
+    elif tag_name == 'p':
+        text = remove_emoji(tag.text)
+        wrapped_text = wrap_text(draw, text, font, max_text_width)
+        draw.text((50, y_position), wrapped_text, font=font, fill=TEXT_COLOR)
+        y_position += 120 + wrapped_text.count('\n') * 40  # 문단 다음에 여백 추가
+    elif tag_name == 'ul':
+        y_position += 60  # 리스트 전에 여백 추가
+        for li_tag in tag.find_all('li'):
+            text = '- ' + li_tag.text
+            wrapped_text = wrap_text(draw, text, font, max_text_width - 30)  # 간격 고려
+            draw.text((80, y_position), wrapped_text, font=font, fill=TEXT_COLOR)
+            y_position += 70 + wrapped_text.count('\n') * 25  # 리스트 아이템 다음에 여백 추가
+
+    return y_position
 
 def wrap_text(draw, text, font, max_width):
     """
