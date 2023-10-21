@@ -1,9 +1,5 @@
-
-
-
 from generateCardnewsBrandingImageByUrl import generateCardnewsBrandingImageByUrl
 from generateCardnewsContentImagesByUrl import generateCardnewsContentImages
-
 from generateCardnewsTitleImageByUrl import generateCardnewsTitleImageByUrl
 
 
@@ -15,6 +11,6 @@ def cardnewsautomation(blog_url):
 
 if __name__ == "__main__":
     
-    test_url = "https://giftedmbti.tistory.com/203"
+    test_url = "https://giftedmbti.tistory.com/227"
     cardnewsautomation(test_url)
 

@@ -6,7 +6,7 @@ from remove_emoji import remove_emoji
 
 def generateCardnewsContentImageByContent(html_content, ImageCount,save_path):
     print(f"current card content : {html_content}")
-    base_font_size = 50
+    base_font_size = BASE_FONT_SIZE
     while True:
         # HTML 파싱
         soup = BeautifulSoup(html_content, 'html.parser')

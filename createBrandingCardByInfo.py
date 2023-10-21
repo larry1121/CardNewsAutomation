@@ -1,7 +1,7 @@
 import os
 from PIL import Image, ImageDraw, ImageFont
 
-from config import BLOG_NAME_FONT_SIZE, BRANDING_TEXT, BRANDING_TEXT_FONT_SIZE, IMAGE_SIZE, FONT_PATH, BRANDING_CIRCLE_RADIUS,TEXT_COLOR, BORDER_COLOR, BORDER_WIDTH, BACKGROUND_COLOR
+from config import BRANDING_BLOG_NAME_FONT_SIZE, BRANDING_TEXT, BRANDING_TEXT_FONT_SIZE, IMAGE_SIZE, FONT_PATH, BRANDING_CIRCLE_RADIUS,TEXT_COLOR, BORDER_COLOR, BORDER_WIDTH, BACKGROUND_COLOR
 
 def createBrandingCardByInfo(BlogMetaInfo):
     blog_name = BlogMetaInfo['site_name']
@@ -47,7 +47,7 @@ def createBrandingCardByInfo(BlogMetaInfo):
     draw.text((text_x, text_y), text, font=font, fill="black", align='center')
     
     # 텍스트 추가: 블로그 이름
-    blog_name_font_size = BLOG_NAME_FONT_SIZE  # 조정 가능
+    blog_name_font_size = BRANDING_BLOG_NAME_FONT_SIZE  # 조정 가능
     blog_name_font = ImageFont.truetype(font_path, blog_name_font_size)
     blog_name_width, blog_name_height = draw.textsize(blog_name, blog_name_font)
     blog_name_x = (size[0] - blog_name_width) // 2

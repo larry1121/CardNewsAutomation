@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw, ImageFont
 import os
 from remove_emoji import remove_emoji
-from config import IMAGE_SIZE, FONT_PATH, TEXT_COLOR, BORDER_COLOR, BORDER_WIDTH, BACKGROUND_COLOR
+from config import IMAGE_SIZE, FONT_PATH, TEXT_COLOR, BORDER_COLOR, BORDER_WIDTH, BACKGROUND_COLOR, TITLE_BLOG_NAME_FONT_SIZE
 
 def calculate_font_size(font_path, text, max_size, min_size):
     font_size = max_size
@@ -11,6 +11,7 @@ def calculate_font_size(font_path, text, max_size, min_size):
         font_size -= 1
         font = ImageFont.truetype(font_path, font_size)
         text_width, _ = font.getsize(text)
+    print(f"title_font_size : {font_size}")
     return font, font_size
 
 def createTitleCardByInfo(BlogMetaInfo):
@@ -21,24 +22,24 @@ def createTitleCardByInfo(BlogMetaInfo):
     size = IMAGE_SIZE
     background_color = BACKGROUND_COLOR
     font_path = FONT_PATH
-    min_font_size = 40
+    min_font_size = 35
     max_font_size = 120
     text_color = TEXT_COLOR
     border_color = BORDER_COLOR
     border_width = BORDER_WIDTH
 
     # 블로그 이름과 글의 제목
-    blog_font_size = 60
+    blogname_font_size = TITLE_BLOG_NAME_FONT_SIZE
 
     # 이미지 생성
     image = Image.new("RGB", size, background_color)
 
-    # 글자 크기 계산
+    # 제목 글자 크기 계산
     font, font_size = calculate_font_size(font_path, post_title, max_font_size, min_font_size)
     text_width, text_height = font.getsize(post_title)
 
-    # 블로그 이름의 폰트 크기 계산
-    blog_font = ImageFont.truetype(font_path, blog_font_size)
+    # 왼쪽 상단의 블로그 이름의 폰트 크기 적용
+    blog_font = ImageFont.truetype(font_path, blogname_font_size)
 
     # 이미지에 글자 쓰기
     draw = ImageDraw.Draw(image)
