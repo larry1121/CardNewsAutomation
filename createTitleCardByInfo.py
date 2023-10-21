@@ -66,7 +66,7 @@ def createTitleCardByInfo(BlogMetaInfo):
 
     blog_text_x = 10
     blog_text_y = 10
-    draw.text((blog_text_x, blog_text_y), blog_name, font=blog_font, fill=text_color)
+    draw.text((blog_text_x, blog_text_y), f"@{blog_name}", font=blog_font, fill=text_color)
 
     # 테두리 그리기
     draw.rectangle((0, 0, size[0] - 1, size[1] - 1), outline=border_color, width=border_width)

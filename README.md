@@ -1,7 +1,7 @@
-### README for CardNewsAutomation
+## CardNewsAutomation
 
 #### 1. 프로젝트 설명
-이 프로젝트는 블로그 포스트를 입력으로 받아 카드뉴스 형태의 이미지를 자동으로 생성하는 Python 프로그램입니다. 블로그의 제목, 내용, 그리고 브랜딩 정보를 포함한 여러 개의 이미지 카드를 생성합니다.
+CardNewsAutomation은 블로그 포스트를 입력으로 받아 카드뉴스 형태의 이미지를 자동으로 생성하는 Python 프로그램입니다. 블로그의 제목, 내용, 그리고 브랜딩 정보를 포함한 여러 개의 이미지 카드를 생성합니다.
 
 #### 2. 사용 기술
 - Python 3
@@ -44,5 +44,5 @@
 이 프로그램은 MIT 라이센스 하에 배포됩니다.
 
 #### 8. 개발자 정보
-- GitHub: [https://github.com/larry1121]
-- 이메일: [ghy200000@gmail.com]
+- GitHub: https://github.com/larry1121
+- 이메일: ghy200000@gmail.com
