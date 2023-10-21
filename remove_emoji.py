@@ -9,8 +9,10 @@ def remove_emoji(input_string):
 
     return string_without_emoji
 
-# 예제 사용
-original_string = "[MBTI] INTJ는 왜 그럴까? 😎"
-string_without_emoji = remove_emoji(original_string)
-print(f"Original String: {original_string}")
-print(f"String without Emoji: {string_without_emoji}")
+
+if __name__ == "__main__":
+    # 예제 사용
+    original_string = "[MBTI] INTJ는 왜 그럴까? 😎"
+    string_without_emoji = remove_emoji(original_string)
+    print(f"Original String: {original_string}")
+    print(f"String without Emoji: {string_without_emoji}")

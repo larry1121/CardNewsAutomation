@@ -5,7 +5,7 @@ from config import BASE_FONT_SIZE, FONT_PATH, IMAGE_SIZE, BACKGROUND_COLOR, TEXT
 from remove_emoji import remove_emoji
 
 def generateCardnewsContentImageByContent(html_content, ImageCount,save_path):
-    
+    print(f"current card content : {html_content}")
     base_font_size = 50
     while True:
         # HTML 파싱
@@ -46,9 +46,10 @@ def generateCardnewsContentImageByContent(html_content, ImageCount,save_path):
         if y_position > image_height:
             # Decrease font size and regenerate the image
             base_font_size = base_font_size-1
+
             print(f"decreasing fontsize... ImageCount : {ImageCount}, current font size : {base_font_size}")
         else:
-            print(f"{ImageCount}.jpg generated, font size : {base_font_size}")
+            print(f"\n{ImageCount}.jpg generated, font size : {base_font_size}")
             break
 
 
@@ -56,28 +57,31 @@ def draw_tag(draw, tag, tag_name, font, y_position, max_text_width):
     """
     Draw text for a specific HTML tag
     """
+
+    y_correction_constant = (font.size/50)
+
     if tag_name == 'h2':
         text = remove_emoji(tag.text)
         wrapped_text = wrap_text(draw, text, font, max_text_width)
         draw.text((50, y_position), wrapped_text, font=font, fill=TEXT_COLOR)
-        y_position += 120 + wrapped_text.count('\n') * 25  # 헤더 다음에 여백 추가
+        y_position += (120 + wrapped_text.count('\n') * 25)*y_correction_constant  # 헤더 다음에 여백 추가
     elif tag_name == 'h3':
         text = remove_emoji(tag.text)
         wrapped_text = wrap_text(draw, text, font, max_text_width)
         draw.text((50, y_position), wrapped_text, font=font, fill=TEXT_COLOR)
-        y_position += 30 + wrapped_text.count('\n') * 25  # 소제목 다음에 여백 추가
+        y_position += (50 + wrapped_text.count('\n') * 25)*y_correction_constant  # 소제목 다음에 여백 추가
     elif tag_name == 'p':
         text = remove_emoji(tag.text)
         wrapped_text = wrap_text(draw, text, font, max_text_width)
         draw.text((50, y_position), wrapped_text, font=font, fill=TEXT_COLOR)
-        y_position += 120 + wrapped_text.count('\n') * 40  # 문단 다음에 여백 추가
+        y_position += (120 + wrapped_text.count('\n') * 40)*y_correction_constant  # 문단 다음에 여백 추가
     elif tag_name == 'ul':
         y_position += 60  # 리스트 전에 여백 추가
         for li_tag in tag.find_all('li'):
             text = '- ' + li_tag.text
             wrapped_text = wrap_text(draw, text, font, max_text_width - 30)  # 간격 고려
             draw.text((80, y_position), wrapped_text, font=font, fill=TEXT_COLOR)
-            y_position += 70 + wrapped_text.count('\n') * 25  # 리스트 아이템 다음에 여백 추가
+            y_position += (70 + wrapped_text.count('\n') * 25)*y_correction_constant  # 리스트 아이템 다음에 여백 추가
 
     return y_position
 
@@ -120,11 +124,17 @@ def get_font_size(tag_name, base_size):
 if __name__ == "__main__":
     # 예제 HTML
     html_content = '''
-    <h2 data-ke-size="size26">마무리하며</h2>\n
-    <p data-ke-size="size16">오늘은 INTJ의 관계적 특징에 대해 알아보았어요. 이들은 엄격한 표현과 높은 기준, 감정적인 소통의 어려움, 독립적인 성향, 그리고 충돌 상황에서의 대처 방식 등에서 독특한 특징을 보입니다. INTJ와의 관계에서 이러한 특징을 이해하고 존중한다면 보다 깊은 연결을 형성할 수 있을 거에요. 🤝</p>\n
-    <p data-ke-size="size16">다음에는 또 다른 MBTI 성격 유형에 대해서 알아보도록 할게요! 😊</p>\n
-    <p data-ke-size="size16">\xa0</p>\n
-    <p data-ke-size="size16">\xa0</p>\n'''
+    <h2 data-ke-size="size26">자유로운 영혼, 하지만 협력도 필요해요! 🤝</h2>
+<p data-ke-size="size16">ISTP는 독립심이 강하고 자유로운 영혼을 가진 사람들이에요. 그들은 자신만의 시간과 공간을 중요시하며, 다른 사람과의 관계에서도 이러한 자유로움을 유지하려고 노력해요. 그러나 협력과 소통이 필요한 순간에는 이들의 유연성과 문제해결 능력이 큰 도움이 될 거예요.</p>
+<h3 data-ke-size="size23">관련 경험담: "함께한 여행, ISTP와의 협력"</h3>
+<p data-ke-size="size16">저는 한 번 ISTP 친구와 여행을 갔었어요. 그때 그는 계획을 철저하게 세우고, 문제가 발생할 때마다 빠르게 해결하는 능력을 보여주었어요. 그의 독립심과 동시에 협력하는 모습을 보면서, 그와 함께하는 것은 얼마나 유익한 경험이었는지를 느낄 수 있었어요.</p>
+<p data-ke-size="size16"> </p>
+<p data-ke-size="size16">이렇게 ISTP의 특징을 알아보았는데요, 여러분도 이들의 독특한 성격과 능력에 놀라우셨나요? ISTP와의 관계에서 이러한 특징들을 고려한다면, 더욱 원활한 소통과 협력이 가능할 거예요. 세상은 다양한 성격으로 가득 차있어서, 서로를 이해하고 존중하는 것이 얼마나 소중한 일인지를 느낄 수 있는 좋은 기회일지도 몰라요! 💫</p>
+<p data-ke-size="size16"> </p>
+<p data-ke-size="size16">그럼 오늘의 이야기도 여기서 마치겠습니다. 다음에도 MBTI 성격 유형에 관한 재미있는 이야기로 찾아뵐게요! 잘 지내세요~ 🌈</p>
+<p data-ke-size="size16"> </p>
+<p data-ke-size="size16">구독과 좋아요를 눌러서 더 많은 MBTI 연애 팁과 이야기를 받아보세요! 그럼 모두 환상적인 연애를 만들어봐요! <span>💖</span><span>💌</span></p>
+<p data-ke-size="size16"> </p>'''
 
     # 이미지 생성 및 저장
     generateCardnewsContentImageByContent(html_content, 'output_image',"/workspaces/CardNewsAutomation")
