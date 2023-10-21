@@ -1,7 +1,11 @@
 from PIL import Image, ImageDraw, ImageFont
 import os
+
 from remove_emoji import remove_emoji
 from config import IMAGE_SIZE, FONT_PATH, TEXT_COLOR, BORDER_COLOR, BORDER_WIDTH, BACKGROUND_COLOR, TITLE_BLOG_NAME_FONT_SIZE
+from sanitize_filename import sanitize_filename
+
+
 
 def calculate_font_size(font_path, text, max_size, min_size):
     font_size = max_size
@@ -16,7 +20,7 @@ def calculate_font_size(font_path, text, max_size, min_size):
 def createTitleCardByInfo(BlogMetaInfo):
     post_title = remove_emoji(str(BlogMetaInfo['title']))
     blog_name = BlogMetaInfo['site_name']
-
+    
     # 이미지 설정
     size = IMAGE_SIZE
     background_color = BACKGROUND_COLOR
@@ -72,12 +76,13 @@ def createTitleCardByInfo(BlogMetaInfo):
     draw.rectangle((0, 0, size[0] - 1, size[1] - 1), outline=border_color, width=border_width)
 
     # 이미지 저장 (as JPG)
-    if not os.path.exists(f"{post_title}"):
-        os.makedirs(f"{post_title}")
-    filename = os.path.join(f"{post_title}", f"{post_title}.jpg")  # Save as JPG format
+    post_title_sanitized = sanitize_filename(post_title)  # 파일 이름 정제
+    if not os.path.exists(post_title_sanitized):
+        os.makedirs(post_title_sanitized)
+    filename = os.path.join(post_title_sanitized, f"{post_title_sanitized}.jpg")  # Save as JPG format
     image.save(filename, format="JPEG")
-    print(f"{post_title}.jpg 완성")
+    print(f"{post_title_sanitized}.jpg 완성")
 
 if __name__ == "__main__":
     # Test with different blog names and post titles
-    createTitleCardByInfo({'site_name': 'giftedmbti', 'title': '[MBTI] INTJ는 왜 그럴까? 😎 - ㅇ나러니ㅏㅁㅇ러ㅣㅏㄴㅁ얼니암ㄹㄴ'})
+    createTitleCardByInfo({'site_name': 'giftedmbti', 'title': '대학생, 공대생 인턴 준비방법 - 인턴의 유형/시기/준비방법 총정리'})

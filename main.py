@@ -11,6 +11,6 @@ def cardnewsautomation(blog_url):
 
 if __name__ == "__main__":
     
-    test_url = "https://giftedmbti.tistory.com/227"
+    test_url = "https://giftedmbti.tistory.com/176"
     cardnewsautomation(test_url)
 

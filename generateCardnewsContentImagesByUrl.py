@@ -2,13 +2,14 @@ from divideContentsByH2Tag import divideContentsByH2Tag
 from generateCardnewsContentImageByContent import generateCardnewsContentImageByContent
 from getBlogMetaInfo import getBlogMetaInfo
 from remove_emoji import remove_emoji
+from sanitize_filename import sanitize_filename
 
 
 def generateCardnewsContentImages(blog_url):
     # Step 1: Get blog content using TistoryCrawler class
     BlogMetaInfo = getBlogMetaInfo(blog_url)
     post_title = remove_emoji(str(BlogMetaInfo['title']))
-    save_path = f"{post_title}"
+    save_path = f"{sanitize_filename(post_title)}"
     
     # Step 2: Divide contents by h2 tag
     dividedContents = divideContentsByH2Tag(blog_url)
