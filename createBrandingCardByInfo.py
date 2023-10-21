@@ -1,3 +1,4 @@
+import os
 from PIL import Image, ImageDraw, ImageFont
 
 from config import BLOG_NAME_FONT_SIZE, BRANDING_TEXT, BRANDING_TEXT_FONT_SIZE, IMAGE_SIZE, FONT_PATH, BRANDING_CIRCLE_RADIUS,TEXT_COLOR, BORDER_COLOR, BORDER_WIDTH, BACKGROUND_COLOR
@@ -53,8 +54,17 @@ def createBrandingCardByInfo(BlogMetaInfo):
     blog_name_y = center_y - radius - 80  # 조정 가능
     draw.text((blog_name_x, blog_name_y), blog_name, font=blog_name_font, fill="black", align='center')
 
-    # 이미지 저장 (as PNG)
-    filename = f"{blog_name}_branding_image.png"
+    # 폴더 이름 설정
+    folder_name = "branding_images"
+
+    # 폴더가 없다면 폴더를 생성
+    if not os.path.exists(folder_name):
+      os.mkdir(folder_name)
+
+    # 이미지 파일 이름 설정 (폴더 경로 포함)
+    filename = os.path.join(folder_name, f"{blog_name}_branding_image.png")
+
+    # 이미지 저장
     image.save(filename, format="PNG")
     print(f"{filename} 생성 완료")
 
