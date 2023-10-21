@@ -62,13 +62,12 @@ def createBrandingCardByInfo(BlogMetaInfo):
       os.mkdir(folder_name)
 
     # 이미지 파일 이름 설정 (폴더 경로 포함)
-    filename = os.path.join(folder_name, f"{blog_name}_branding_image.png")
+    filename = os.path.join(folder_name, f"{blog_name}_branding_image.jpg")
 
     # 이미지 저장
-    image.save(filename, format="PNG")
+    image.save(filename, format="JPEG")
     print(f"{filename} 생성 완료")
 
 if __name__ == "__main__":
     # Test with different blog names and post titles
-    test_url = "https://ham-in-dev.tistory.com/entry/setting-window-conda2"
-    createBrandingCardByInfo(test_url)
+    createBrandingCardByInfo({'site_name': 'giftedmbti', 'title': '[MBTI] INTJ는 왜 그럴까? 😎 - ㅇ나러니ㅏㅁㅇ러ㅣㅏㄴㅁ얼니암ㄹㄴ'})
