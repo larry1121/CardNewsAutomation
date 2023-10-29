@@ -4,7 +4,7 @@ from PIL import Image, ImageDraw, ImageFont
 from config import BASE_FONT_SIZE, FONT_PATH, IMAGE_SIZE, BACKGROUND_COLOR, TEXT_COLOR, BORDER_COLOR, BORDER_WIDTH
 from remove_emoji import remove_emoji
 
-def generateCardnewsContentImageByContent(html_content, ImageCount,save_path):
+def generateCardnewsContentImageByContent(html_content, ImageName, save_path):
     print(f"current card content : {html_content}")
     base_font_size = BASE_FONT_SIZE
     while True:
@@ -38,7 +38,7 @@ def generateCardnewsContentImageByContent(html_content, ImageCount,save_path):
 
 
 
-        filename = os.path.join(save_path, f"{ImageCount}.jpg")  # Save as JPG format
+        filename = os.path.join(save_path, f"{ImageName}.jpg")  # Save as JPG format
         # 이미지 저장
         image.save(filename, 'png')
 
@@ -47,9 +47,9 @@ def generateCardnewsContentImageByContent(html_content, ImageCount,save_path):
             # Decrease font size and regenerate the image
             base_font_size = base_font_size-1
 
-            print(f"decreasing fontsize... ImageCount : {ImageCount}, current font size : {base_font_size}")
+            print(f"decreasing fontsize... ImageName : {ImageName}, current font size : {base_font_size}")
         else:
-            print(f"\n{ImageCount}.jpg generated, font size : {base_font_size}")
+            print(f"\n{ImageName}.jpg generated, font size : {base_font_size}")
             break
 
 

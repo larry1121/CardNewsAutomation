@@ -5,6 +5,7 @@ from generateCardnewsContentImagesByUrl import generateCardnewsContentImages
 from generateCardnewsTitleImageByUrl import generateCardnewsTitleImageByUrl
 from getBlogMetaInfo import getBlogMetaInfo
 from remove_emoji import remove_emoji
+from sanitize_filename import sanitize_filename
 from uploadCardnewsToInstagram import uploadCardnewsToInstagram
 
 
@@ -17,8 +18,8 @@ def cardnewsautomation(blog_url):
     BlogMetaInfo = getBlogMetaInfo(blog_url)
 
 
-
-    folder_name = remove_emoji(str(BlogMetaInfo['title']))
+    
+    folder_name = sanitize_filename(remove_emoji(str(BlogMetaInfo['title'])))
     
 
     # Confirm the images and caption before uploading
@@ -41,5 +42,5 @@ def cardnewsautomation(blog_url):
 
 
 if __name__ == "__main__":
-    test_url = "https://giftedmbti.tistory.com/176"
+    test_url = "https://giftedmbti.tistory.com/186"
     cardnewsautomation(test_url)
