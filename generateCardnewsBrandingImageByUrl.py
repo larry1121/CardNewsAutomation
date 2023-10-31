@@ -15,6 +15,7 @@ from getBlogFavicon import getBlogFavicon
 from getBlogMetaInfo import getBlogMetaInfo
 
 def generateCardnewsBrandingImageByUrl(blog_url):
+    print("-----------------------------------------------------------------------------------")
     # 블로그 메타 정보 가져오기
     BlogMetaInfo = getBlogMetaInfo(blog_url)
     

@@ -66,7 +66,8 @@ def createBrandingCardByInfo(BlogMetaInfo):
 
     # 이미지 저장
     image.save(filename, format="JPEG")
-    print(f"{filename} 생성 완료")
+    
+    print(f"BrandingImage : {filename} 생성 완료")
 
 if __name__ == "__main__":
     # Test with different blog names and post titles

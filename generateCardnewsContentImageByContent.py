@@ -5,6 +5,7 @@ from config import BASE_FONT_SIZE, FONT_PATH, IMAGE_SIZE, BACKGROUND_COLOR, TEXT
 from remove_emoji import remove_emoji
 
 def generateCardnewsContentImageByContent(html_content, ImageName, save_path):
+    print("-----------------------------------------------------------------------------------")
     print(f"current card content : {html_content}")
     base_font_size = BASE_FONT_SIZE
     while True:
@@ -49,7 +50,7 @@ def generateCardnewsContentImageByContent(html_content, ImageName, save_path):
 
             print(f"decreasing fontsize... ImageName : {ImageName}, current font size : {base_font_size}")
         else:
-            print(f"\n{ImageName}.jpg generated, font size : {base_font_size}")
+            print(f"\n{ImageName}.jpg generated, font size : {base_font_size}\n\n")
             break
 
 

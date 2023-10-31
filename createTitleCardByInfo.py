@@ -81,7 +81,7 @@ def createTitleCardByInfo(BlogMetaInfo):
         os.makedirs(post_title_sanitized)
     filename = os.path.join(post_title_sanitized, f"{post_title_sanitized}.jpg")  # Save as JPG format
     image.save(filename, format="JPEG")
-    print(f"{post_title_sanitized}.jpg 완성")
+    print(f"Title Image : {post_title_sanitized}.jpg 완성\n\n")
 
 if __name__ == "__main__":
     # Test with different blog names and post titles
