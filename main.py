@@ -50,6 +50,6 @@ def confirm_and_upload(folder_name):
         logging.info("User declined upload. Exiting...")
 
 if __name__ == "__main__":
-    test_url = "https://giftedmbti.tistory.com/186"
+    test_url = "https://giftedmbti.tistory.com/169"
     folder_name = generate_images(test_url)
-    confirm_and_upload(folder_name)
+    #confirm_and_upload(folder_name)

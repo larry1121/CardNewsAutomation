@@ -11,7 +11,7 @@ def calculate_font_size(font_path, text, max_size, min_size):
     font_size = max_size
     font = ImageFont.truetype(font_path, font_size)
     text_width, _ = font.getsize(text)
-    while font_size > min_size and text_width > 0.8 * IMAGE_SIZE[0]:
+    while font_size > min_size and text_width < 0.8 * IMAGE_SIZE[0]:
         font_size -= 1
         font = ImageFont.truetype(font_path, font_size)
         text_width, _ = font.getsize(text)
@@ -26,7 +26,7 @@ def createTitleCardByInfo(BlogMetaInfo):
     background_color = BACKGROUND_COLOR
     font_path = FONT_PATH
     min_font_size = 70
-    max_font_size = 120
+    max_font_size = 150
     text_color = TEXT_COLOR
     border_color = BORDER_COLOR
     border_width = BORDER_WIDTH
