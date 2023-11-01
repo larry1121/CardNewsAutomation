@@ -49,6 +49,8 @@ def confirm_and_upload(folder_name):
     else:
         logging.info("User declined upload. Exiting...")
 
+
+
 if __name__ == "__main__":
     test_url = "https://giftedmbti.tistory.com/169"
     folder_name = generate_images(test_url)
