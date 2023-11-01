@@ -1,6 +1,7 @@
 import os
 from PIL import Image, ImageDraw, ImageFont
-
+from remove_emoji import remove_emoji
+from sanitize_filename import sanitize_filename
 from config import BRANDING_BLOG_NAME_FONT_SIZE, BRANDING_TEXT, BRANDING_TEXT_FONT_SIZE, IMAGE_SIZE, FONT_PATH, BRANDING_CIRCLE_RADIUS,TEXT_COLOR, BORDER_COLOR, BORDER_WIDTH, BACKGROUND_COLOR
 
 def createBrandingCardByInfo(BlogMetaInfo):
@@ -55,7 +56,8 @@ def createBrandingCardByInfo(BlogMetaInfo):
     draw.text((blog_name_x, blog_name_y), blog_name, font=blog_name_font, fill="black", align='center')
 
     # 폴더 이름 설정
-    folder_name = "branding_images"
+    
+    folder_name = sanitize_filename(remove_emoji(str(BlogMetaInfo['title'])))
 
     # 폴더가 없다면 폴더를 생성
     if not os.path.exists(folder_name):
