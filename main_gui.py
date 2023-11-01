@@ -53,10 +53,20 @@ def on_confirm_and_display_click():
 
 # Create the Tkinter window
 root = tk.Tk()
-root.title("My GUI App")
+# 아이콘 변경
+root.iconbitmap('bugdict_icon.ico')
+root.title("CardNewsAutomation")
+
+# Configure the grid to expand as window resizes
+root.grid_rowconfigure(0, weight=1)
+root.grid_columnconfigure(0, weight=1)
 
 main_frame = tk.Frame(root)
 main_frame.grid(sticky='news')
+
+# Configure the main frame to expand
+main_frame.grid_rowconfigure(1, weight=1)
+main_frame.grid_columnconfigure(0, weight=1)
 
 # Create and place labels, buttons, and Text widget inside a frame
 control_frame = tk.Frame(main_frame)
