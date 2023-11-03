@@ -47,6 +47,6 @@ def confirm_and_display(folder_name):
 
 
 if __name__ == "__main__":
-    test_url = "https://giftedmbti.tistory.com/169"
+    test_url = "https://giftedmbti.tistory.com/171"
     folder_name = generate_images(test_url)
     confirm_and_display(folder_name)

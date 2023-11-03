@@ -16,7 +16,7 @@ def remove_emoji(input_string):
 if __name__ == "__main__":
     # 예제 사용
     
-    original_string = "[MBTI] INTJ는 왜 그럴까? 😎"
+    original_string = "플러팅과 INTP: 서론에서부터 끝까지 한 걸음씩 🚶‍♂️💬"
     string_without_emoji = remove_emoji(original_string)
     print(f"Original String: {original_string}")
     print(f"String without Emoji: {string_without_emoji}")

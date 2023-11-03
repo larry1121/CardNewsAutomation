@@ -125,17 +125,12 @@ def get_font_size(tag_name, base_size):
 if __name__ == "__main__":
     # 예제 HTML
     html_content = '''
-    <h2 data-ke-size="size26">자유로운 영혼, 하지만 협력도 필요해요! 🤝</h2>
-<p data-ke-size="size16">ISTP는 독립심이 강하고 자유로운 영혼을 가진 사람들이에요. 그들은 자신만의 시간과 공간을 중요시하며, 다른 사람과의 관계에서도 이러한 자유로움을 유지하려고 노력해요. 그러나 협력과 소통이 필요한 순간에는 이들의 유연성과 문제해결 능력이 큰 도움이 될 거예요.</p>
-<h3 data-ke-size="size23">관련 경험담: "함께한 여행, ISTP와의 협력"</h3>
-<p data-ke-size="size16">저는 한 번 ISTP 친구와 여행을 갔었어요. 그때 그는 계획을 철저하게 세우고, 문제가 발생할 때마다 빠르게 해결하는 능력을 보여주었어요. 그의 독립심과 동시에 협력하는 모습을 보면서, 그와 함께하는 것은 얼마나 유익한 경험이었는지를 느낄 수 있었어요.</p>
-<p data-ke-size="size16"> </p>
-<p data-ke-size="size16">이렇게 ISTP의 특징을 알아보았는데요, 여러분도 이들의 독특한 성격과 능력에 놀라우셨나요? ISTP와의 관계에서 이러한 특징들을 고려한다면, 더욱 원활한 소통과 협력이 가능할 거예요. 세상은 다양한 성격으로 가득 차있어서, 서로를 이해하고 존중하는 것이 얼마나 소중한 일인지를 느낄 수 있는 좋은 기회일지도 몰라요! 💫</p>
-<p data-ke-size="size16"> </p>
-<p data-ke-size="size16">그럼 오늘의 이야기도 여기서 마치겠습니다. 다음에도 MBTI 성격 유형에 관한 재미있는 이야기로 찾아뵐게요! 잘 지내세요~ 🌈</p>
-<p data-ke-size="size16"> </p>
-<p data-ke-size="size16">구독과 좋아요를 눌러서 더 많은 MBTI 연애 팁과 이야기를 받아보세요! 그럼 모두 환상적인 연애를 만들어봐요! <span>💖</span><span>💌</span></p>
-<p data-ke-size="size16"> </p>'''
+    <h2 data-ke-size="size26">플러팅과 INTP: 서론에서부터 끝까지 한 걸음씩</h2>
+<p data-ke-size="size16">INTP는 관계를 형성하는데 조금 더 많은 시간이 필요한 편이에요. 그래서 플러팅을 하기에는 적합하지 않다고 생각할 수 있지만, 사실은 그렇지 않아요. 플러팅을 통해 INTP와 가까워지는 방법을 알아보도록 해요!</p>
+<h3 data-ke-size="size23">서론에서 시작하기: 지적인 호기심을 자극하는 주제로!</h3>
+<p data-ke-size="size16">INTP는 지적 호기심이 높기 때문에, 서로의 관심사에 대해 이야기하는 것이 플러팅을 시작하는 좋은 방법이에요. 예를 들어, 공통적인 취미나 책, 영화, 과학적인 주제에 대해 토론해보면 INTP는 흥미를 갖고 더 많은 시간을 함께 보내고 싶어질 거예요. 자신만의 독특한 관점과 아이디어를 공유하는 것은 INTP에게 큰 매력이 됩니다.</p>
+<h3 data-ke-size="size23">약간의 거리: 누군가가 침입하지 않는 공간</h3>
+<p data-ke-size="size16">INTP는 내적 세계에 많은 시간을 보내는 경향이 있어요. 때문에 상대방이 너무 강력하게 다가오는 것보다는 조금의 거리감을 유지하는 것이 중요합니다. 서로에게 충분한 공간과 자유를 주면서 관심을 표현하는 것이 INTP와의 플러팅을 성공시키는 비결이에요.</p>'''
 
     # 이미지 생성 및 저장
-    generateCardnewsContentImageByContent(html_content, 'output_image',"/workspaces/CardNewsAutomation")
+    generateCardnewsContentImageByContent(html_content, 'output_image',"/Users/usere/blogimageautomation/CardNewsAutomation/[MBTI] INTP에게 이상적인 연애 ")
