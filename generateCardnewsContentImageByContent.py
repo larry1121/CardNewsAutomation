@@ -61,21 +61,17 @@ def draw_tag(draw, tag, tag_name, font, y_position, max_text_width):
 
     y_correction_constant = (font.size/50)
 
-    if tag_name == 'h2':
-        text = remove_emoji(tag.text)
+    if tag_name in ['h2', 'h3', 'p']:
+        original_text = tag.text
+        print(f'Original text: {original_text}')  # Debug log
+        text = remove_emoji(remove_emoji(original_text))
+        print(f'Text after removing emoji: {text}')  # Debug log
         wrapped_text = wrap_text(draw, text, font, max_text_width)
         draw.text((50, y_position), wrapped_text, font=font, fill=TEXT_COLOR)
-        y_position += (120 + wrapped_text.count('\n') * 25)*y_correction_constant  # 헤더 다음에 여백 추가
-    elif tag_name == 'h3':
-        text = remove_emoji(tag.text)
-        wrapped_text = wrap_text(draw, text, font, max_text_width)
-        draw.text((50, y_position), wrapped_text, font=font, fill=TEXT_COLOR)
-        y_position += (50 + wrapped_text.count('\n') * 25)*y_correction_constant  # 소제목 다음에 여백 추가
-    elif tag_name == 'p':
-        text = remove_emoji(tag.text)
-        wrapped_text = wrap_text(draw, text, font, max_text_width)
-        draw.text((50, y_position), wrapped_text, font=font, fill=TEXT_COLOR)
-        y_position += (120 + wrapped_text.count('\n') * 40)*y_correction_constant  # 문단 다음에 여백 추가
+        y_position += (120 + wrapped_text.count('\n') * 25)*y_correction_constant if tag_name == 'h2' \
+            else (50 + wrapped_text.count('\n') * 25)*y_correction_constant if tag_name == 'h3' \
+            else (120 + wrapped_text.count('\n') * 40)*y_correction_constant  # Update y_position based on tag name
+            
     elif tag_name == 'ul':
         y_position += 60  # 리스트 전에 여백 추가
         for li_tag in tag.find_all('li'):
@@ -125,12 +121,16 @@ def get_font_size(tag_name, base_size):
 if __name__ == "__main__":
     # 예제 HTML
     html_content = '''
-    <h2 data-ke-size="size26">플러팅과 INTP: 서론에서부터 끝까지 한 걸음씩</h2>
-<p data-ke-size="size16">INTP는 관계를 형성하는데 조금 더 많은 시간이 필요한 편이에요. 그래서 플러팅을 하기에는 적합하지 않다고 생각할 수 있지만, 사실은 그렇지 않아요. 플러팅을 통해 INTP와 가까워지는 방법을 알아보도록 해요!</p>
-<h3 data-ke-size="size23">서론에서 시작하기: 지적인 호기심을 자극하는 주제로!</h3>
-<p data-ke-size="size16">INTP는 지적 호기심이 높기 때문에, 서로의 관심사에 대해 이야기하는 것이 플러팅을 시작하는 좋은 방법이에요. 예를 들어, 공통적인 취미나 책, 영화, 과학적인 주제에 대해 토론해보면 INTP는 흥미를 갖고 더 많은 시간을 함께 보내고 싶어질 거예요. 자신만의 독특한 관점과 아이디어를 공유하는 것은 INTP에게 큰 매력이 됩니다.</p>
-<h3 data-ke-size="size23">약간의 거리: 누군가가 침입하지 않는 공간</h3>
-<p data-ke-size="size16">INTP는 내적 세계에 많은 시간을 보내는 경향이 있어요. 때문에 상대방이 너무 강력하게 다가오는 것보다는 조금의 거리감을 유지하는 것이 중요합니다. 서로에게 충분한 공간과 자유를 주면서 관심을 표현하는 것이 INTP와의 플러팅을 성공시키는 비결이에요.</p>'''
+   <h2 data-ke-size="size26">INFJ의 이상적인 연애 관계 💑</h2>
+<p data-ke-size="size16">INFJ들은 이상적인 연애 관계에서 다음과 같은 가치를 중요시해요:</p>
+<h3 data-ke-size="size23">솔직하고 열린 대화를 할 수 있는 관계 🤗</h3>
+<p data-ke-size="size16">INFJ들은 솔직하고 열린 대화를 통해 서로를 이해하고, 서로의 감정과 생각을 나눌 수 있는 관계를 원해요. 서로에게 진심으로 다가가기 위해서는 이러한 소통이 매우 중요합니다.</p>
+<h3 data-ke-size="size23">상대방을 존중하고 이해하는 관계 🗨️</h3>
+<p data-ke-size="size16">INFJ들은 상대방을 존중하고 이해하는 것이 매우 중요해요. 이들은 서로의 공간과 개인적인 시간을 존중하며, 서로의 취향과 가치를 이해하려고 노력합니다.</p>
+<h3 data-ke-size="size23">감정적인 지지를 제공하는 관계 🤗</h3>
+<p data-ke-size="size16">INFJ들은 서로를 위로하고 감정적인 지지를 제공하는 관계를 바랍니다. 힘든 순간에도 서로를 지지하고 더 나은 방향으로 나아갈 수 있도록 도와줌으로써, 더욱 깊고 의미 있는 연결을 형성할 수 있어요.</p>
+<h3 data-ke-size="size23">공통의 이상과 목표를 공유하는 관계 🌈</h3>
+<p data-ke-size="size16">INFJ들은 상대방과 공통의 이상과 목표를 공유하는 것을 중요하게 생각해요. 서로가 비슷한 가치관과 이상을 가지고 있다면, 더욱 깊고 의미 있는 관계를 형성할 수 있을거에요.</p>'''
 
     # 이미지 생성 및 저장
     generateCardnewsContentImageByContent(html_content, 'output_image',"/Users/usere/blogimageautomation/CardNewsAutomation/[MBTI] INTP에게 이상적인 연애 ")
