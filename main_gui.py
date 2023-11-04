@@ -25,31 +25,38 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logging.getLogger().addHandler(logging.StreamHandler(stream=type('TkinterLogStream', (object,), {'write': log_text_handler})))
 
 def on_generate_images_click():
-    url = url_entry.get()
-    folder_name = generate_images(url)
-    folder_name_var.set(f"Folder name: {folder_name}")
+    try:
+        url = url_entry.get()
+        folder_name = generate_images(url)
+        folder_name_var.set(f"Folder name: {folder_name}")
+    except Exception as e:
+        logging.error(f"Image generation error: {e}")
+        log_text_handler(f"Error during image generation: {e}")
 
 def on_confirm_and_display_click():
-    folder_name = folder_name_var.get().replace("Folder name: ", "")
-    photos, caption = confirm_and_display(folder_name)
+    try:
+        folder_name = folder_name_var.get().replace("Folder name: ", "")
+        photos, caption = confirm_and_display(folder_name)
 
-    # Clear existing widgets in the canvas
-    for widget in canvas_frame.winfo_children():
-        widget.destroy()
+        # Clear existing widgets in the canvas
+        for widget in canvas_frame.winfo_children():
+            widget.destroy()
 
-    y_position = 0
-    for photo_path in photos:
-        img = Image.open(photo_path)
-        img = img.resize((200, 200), Image.ANTIALIAS)  # Resize for display
-        img = ImageTk.PhotoImage(img)
-        img_label = tk.Label(canvas_frame, image=img)
-        img_label.image = img
-        img_label.grid(row=0, column=y_position)
-        y_position += 1
+        y_position = 0
+        for photo_path in photos:
+            img = Image.open(photo_path)
+            img = img.resize((200, 200), Image.ANTIALIAS)  # Resize for display
+            img = ImageTk.PhotoImage(img)
+            img_label = tk.Label(canvas_frame, image=img)
+            img_label.image = img
+            img_label.grid(row=0, column=y_position)
+            y_position += 1
 
-    # Display caption
-    suggested_caption_var.set(f"Suggested caption: {caption}")
-
+        # Display caption
+        suggested_caption_var.set(f"Suggested caption: {caption}")
+    except Exception as e:
+        logging.error(f"Confirmation and display error: {e}")
+        log_text_handler(f"Error during confirmation and display: {e}")
 
 # Create the Tkinter window
 root = tk.Tk()

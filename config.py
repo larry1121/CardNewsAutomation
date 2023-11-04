@@ -1,8 +1,19 @@
 # OpenAI(not yet)
 OPENAI_API_KEY = 'sk-'
 
-# IMAGE_CONSTANT
-FONT_PATH = '/Users/usere/blogimageautomation/CardNewsAutomation/THE소녀감성.ttf'
+import os
+import sys
+
+if getattr(sys, 'frozen', False):
+    # The application is frozen
+    bundle_dir = sys._MEIPASS
+else:
+    # The application is not frozen
+    # Change this bit to the path where you store your data files:
+    bundle_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Use the font
+FONT_PATH = os.path.join(bundle_dir, 'THE소녀감성.ttf')
 
 
 IMAGE_SIZE = (1080, 1080)  # Instagram card news size
