@@ -19,7 +19,7 @@ def generateCardnewsContentImages(blog_url):
     
     for content in dividedContents:
         ImageName = f"{post_title}_{ImageCount}"
-        generateCardnewsContentImageByContent(content,ImageName,save_path)
+        generateCardnewsContentImageByContent(content,ImageName,save_path,BlogMetaInfo)
         ImageCount = ImageCount + 1 
 
 

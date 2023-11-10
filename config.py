@@ -19,8 +19,8 @@ FONT_PATH = os.path.join(bundle_dir, 'THE소녀감성.ttf')
 IMAGE_SIZE = (1080, 1080)  # Instagram card news size
 BACKGROUND_COLOR = (255, 220, 220)  # 연한 핑크색
 TEXT_COLOR = (0, 0, 0)
-BORDER_COLOR = (255, 255, 255)
-BORDER_WIDTH = 5
+BORDER_COLOR = (0, 0, 0)
+BORDER_WIDTH = 10
 
 # TITLE_CONSTANT
 TITLE_BLOG_NAME_FONT_SIZE = 65

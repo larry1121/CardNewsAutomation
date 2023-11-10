@@ -1,10 +1,10 @@
 import os
 from bs4 import BeautifulSoup
 from PIL import Image, ImageDraw, ImageFont
-from config import BASE_FONT_SIZE, FONT_PATH, IMAGE_SIZE, BACKGROUND_COLOR, TEXT_COLOR, BORDER_COLOR, BORDER_WIDTH
+from config import BASE_FONT_SIZE, FONT_PATH, IMAGE_SIZE, BACKGROUND_COLOR, TEXT_COLOR, BORDER_COLOR, BORDER_WIDTH,TITLE_BLOG_NAME_FONT_SIZE
 from remove_emoji import remove_emoji
 
-def generateCardnewsContentImageByContent(html_content, ImageName, save_path):
+def generateCardnewsContentImageByContent(html_content, ImageName, save_path,BlogMetaInfo ):
     print("-----------------------------------------------------------------------------------")
     print(f"current card content : {html_content}")
     base_font_size = BASE_FONT_SIZE
@@ -16,6 +16,17 @@ def generateCardnewsContentImageByContent(html_content, ImageName, save_path):
         image_width, image_height = IMAGE_SIZE
         image = Image.new('RGB', (image_width, image_height), BACKGROUND_COLOR)
         draw = ImageDraw.Draw(image)
+
+        # 추가된 부분: 블로그 이름 폰트 설정
+        blog_name = BlogMetaInfo['site_name']
+        blogname_font_size = TITLE_BLOG_NAME_FONT_SIZE
+        blog_font = ImageFont.truetype(FONT_PATH, blogname_font_size)
+
+        # 추가된 부분: 블로그 이름 텍스트 그리기
+        blog_text_x = 10
+        blog_text_y = 10
+        draw.text((blog_text_x, blog_text_y), f"@{blog_name}", font=blog_font, fill=TEXT_COLOR)
+
 
         # 사용할 폰트 설정
         
@@ -133,4 +144,4 @@ if __name__ == "__main__":
 <p data-ke-size="size16">INFJ들은 상대방과 공통의 이상과 목표를 공유하는 것을 중요하게 생각해요. 서로가 비슷한 가치관과 이상을 가지고 있다면, 더욱 깊고 의미 있는 관계를 형성할 수 있을거에요.</p>'''
 
     # 이미지 생성 및 저장
-    generateCardnewsContentImageByContent(html_content, 'output_image',"/Users/usere/blogimageautomation/CardNewsAutomation/[MBTI] INTP에게 이상적인 연애 ")
+    generateCardnewsContentImageByContent(html_content, 'output_image',"/Users/usere/blogimageautomation/CardNewsAutomation/[MBTI] INTP에게 이상적인 연애 ",{'site_name': 'giftedmbti', 'title': '[MBTI] INTJ는 왜 그럴까? 😎'})

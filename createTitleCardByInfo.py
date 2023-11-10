@@ -2,10 +2,8 @@ from PIL import Image, ImageDraw, ImageFont
 import os
 
 from remove_emoji import remove_emoji
-from config import IMAGE_SIZE, FONT_PATH, TEXT_COLOR, BORDER_COLOR, BORDER_WIDTH, BACKGROUND_COLOR, TITLE_BLOG_NAME_FONT_SIZE
+from config import BORDER_COLOR, BORDER_WIDTH, IMAGE_SIZE, FONT_PATH, TEXT_COLOR, BACKGROUND_COLOR, TITLE_BLOG_NAME_FONT_SIZE
 from sanitize_filename import sanitize_filename
-
-
 
 def calculate_font_size(font_path, text, max_size, min_size):
     font_size = max_size
@@ -28,11 +26,13 @@ def createTitleCardByInfo(BlogMetaInfo):
     min_font_size = 70
     max_font_size = 150
     text_color = TEXT_COLOR
-    border_color = BORDER_COLOR
-    border_width = BORDER_WIDTH
 
     # 블로그 이름과 글의 제목
     blogname_font_size = TITLE_BLOG_NAME_FONT_SIZE
+
+    # 새로운 값 추가: 테두리 색상 및 너비
+    border_color = BORDER_COLOR
+    border_width = BORDER_WIDTH  # Change this value to adjust the border width
 
     # 이미지 생성
     image = Image.new("RGB", size, background_color)
@@ -73,7 +73,8 @@ def createTitleCardByInfo(BlogMetaInfo):
     draw.text((blog_text_x, blog_text_y), f"@{blog_name}", font=blog_font, fill=text_color)
 
     # 테두리 그리기
-    draw.rectangle((0, 0, size[0] - 1, size[1] - 1), outline=border_color, width=border_width)
+    border_rect = [(0, 0), (size[0] - 1, size[1] - 1)]
+    draw.rectangle(border_rect, outline=border_color, width=border_width)
 
     # 이미지 저장 (as JPG)
     post_title_sanitized = sanitize_filename(post_title)  # 파일 이름 정제
