@@ -43,10 +43,15 @@ def confirm_and_display(folder_name):
     
     return photos, caption
 
-
+# MBTI 유형을 받아 문자열 생성하는 함수
+def generate_mbti_string(mbti_type):
+    output_string = f"#giftedmbti#{mbti_type}#연애툰#인스타툰#{mbti_type}#{mbti_type}연애#mbti유형#mbti만화#{mbti_type}공감"
+    print(output_string)
+    return output_string
 
 
 if __name__ == "__main__":
-    test_url = "https://giftedmbti.tistory.com/151"
+    test_url ="https://bugdict.tistory.com/82"
     folder_name = generate_images(test_url)
     confirm_and_display(folder_name)
+    generate_mbti_string("entj")
