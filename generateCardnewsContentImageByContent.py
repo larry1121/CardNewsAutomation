@@ -75,7 +75,7 @@ def draw_tag(draw, tag, tag_name, font, y_position, max_text_width):
     if tag_name in ['h2', 'h3', 'p']:
         original_text = tag.text
         print(f'Original text: {original_text}')  # Debug log
-        text = remove_emoji(remove_emoji(original_text))
+        text = remove_emoji(original_text)
         print(f'Text after removing emoji: {text}')  # Debug log
         wrapped_text = wrap_text(draw, text, font, max_text_width)
         draw.text((50, y_position), wrapped_text, font=font, fill=TEXT_COLOR)
@@ -86,7 +86,7 @@ def draw_tag(draw, tag, tag_name, font, y_position, max_text_width):
     elif tag_name == 'ul':
         y_position += 60  # 리스트 전에 여백 추가
         for li_tag in tag.find_all('li'):
-            text = '- ' + li_tag.text
+            text = '- ' + remove_emoji(li_tag.text)
             wrapped_text = wrap_text(draw, text, font, max_text_width - 30)  # 간격 고려
             draw.text((80, y_position), wrapped_text, font=font, fill=TEXT_COLOR)
             y_position += (70 + wrapped_text.count('\n') * 25)*y_correction_constant  # 리스트 아이템 다음에 여백 추가
