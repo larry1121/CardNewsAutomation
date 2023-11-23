@@ -51,7 +51,7 @@ def generate_mbti_string(mbti_type):
 
 
 if __name__ == "__main__":
-    test_url ="https://giftedmbti.tistory.com/159"
+    test_url ="https://giftedmbti.tistory.com/166"
     folder_name = generate_images(test_url)
     confirm_and_display(folder_name)
     generate_mbti_string("entj")

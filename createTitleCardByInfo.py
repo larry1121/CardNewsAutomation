@@ -23,7 +23,7 @@ def createTitleCardByInfo(BlogMetaInfo):
     size = IMAGE_SIZE
     background_color = BACKGROUND_COLOR
     font_path = FONT_PATH
-    min_font_size = 70
+    min_font_size = 80
     max_font_size = 150
     text_color = TEXT_COLOR
 
