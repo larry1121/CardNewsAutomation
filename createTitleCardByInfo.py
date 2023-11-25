@@ -23,6 +23,7 @@ def createTitleCardByInfo(BlogMetaInfo):
     size = IMAGE_SIZE
     background_color = BACKGROUND_COLOR
     font_path = FONT_PATH
+
     min_font_size = 80
     max_font_size = 150
     text_color = TEXT_COLOR
@@ -86,4 +87,4 @@ def createTitleCardByInfo(BlogMetaInfo):
 
 if __name__ == "__main__":
     # Test with different blog names and post titles
-    createTitleCardByInfo({'site_name': 'giftedmbti', 'title': '대학생, 공대생 인턴 준비방법 - 인턴의 유형/시기/준비방법 총정리'})
+    createTitleCardByInfo({'site_name': 'giftedmbti', 'title': '끼리끼리'})
