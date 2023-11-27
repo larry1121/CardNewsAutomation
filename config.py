@@ -12,15 +12,15 @@ else:
     # Change this bit to the path where you store your data files:
     bundle_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Use the font
+# write ttf file name here
 FONT_PATH = os.path.join(bundle_dir, 'THE소녀감성.ttf')
 
 
 IMAGE_SIZE = (1080, 1080)  # Instagram card news size
 BACKGROUND_COLOR = (255, 220, 220)  # 연한 핑크색
 # (255, 235, 235) 더 연한 핑크색
-TEXT_COLOR = (0, 0, 0)
-BORDER_COLOR = (255, 255, 255)
+TEXT_COLOR = (0, 0, 0) # 검은색 글씨
+BORDER_COLOR = (255, 255, 255) #하얀색 경계선
 BORDER_WIDTH = 15
 
 # TITLE_CONSTANT
