@@ -87,4 +87,4 @@ def createTitleCardByInfo(BlogMetaInfo):
 
 if __name__ == "__main__":
     # Test with different blog names and post titles
-    createTitleCardByInfo({'site_name': 'giftedmbti', 'title': '끼리끼리'})
+    createTitleCardByInfo({'site_name': 'giftedmbti', 'title': '불건강 estj에게 해주고 싶은 말'})
