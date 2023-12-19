@@ -50,6 +50,8 @@ CardNewsAutomation은 블로그 포스트 url을 입력으로 받아 카드뉴�
 
 1.  main\_gui.exe를 다운로드합니다.
 
+[main_gui.py 다운로드](https://github.com/larry1121/CardNewsAutomation/blob/main/dist/main_gui)
+
 -   실행방법
 
 1.  다운로드한 exe파일을 실행합니다.
