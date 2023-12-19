@@ -1,15 +1,25 @@
 ## CardNewsAutomation
 
 #### 1. 프로젝트 설명
-CardNewsAutomation은 블로그 포스트를 입력으로 받아 카드뉴스 형태의 이미지를 자동으로 생성하는 Python 프로그램입니다. 블로그의 제목, 내용, 그리고 브랜딩 정보를 포함한 여러 개의 이미지 카드를 생성합니다. 폰트의 크기는 html태그에 따라 달라집니다.
+CardNewsAutomation은 블로그 포스트 url을 입력으로 받아 카드뉴스 형태의 이미지를 자동으로 생성하는 Python 프로그램입니다. 블로그의 제목, 내용, 그리고 브랜딩 정보를 포함한 여러 개의 이미지 카드를 생성합니다. 폰트의 크기는 html태그에 따라 달라집니다.
+
+구동방식:
+
+1. url을 활용하여 html을 크롤링
+2. Metadata로 TitleCard와 BrandingCard 생성
+3. h2태그로 내용을 구분하여 contentsCard 생성
+
+
 
 현재 지원 블로그 : 티스토리
 
-#### 2. 사용 기술
+#### 2. 사용 라이브러리
 - Python 3
 - BeautifulSoup
 - Requests
 - Pillow
+- Tkinter
+- PyInstaller
 
 #### 3. 설치 방법
 1. 이 GitHub 레포지토리를 클론합니다.
