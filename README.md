@@ -5,6 +5,13 @@ CardNewsAutomation은 블로그 포스트 url을 입력으로 받아 카드뉴�
 
 블로그의 제목, 내용, 그리고 브랜딩 정보를 포함한 여러 장의 이미지 카드를 생성합니다. 
 
+#### 예시 이미지
+
+입력한 url:
+https://giftedmbti.tistory.com/167
+
+출력된 이미지 (일부):
+
 ![MBTI  INTJ에게 이상적인 연애 _0](https://github.com/larry1121/CardNewsAutomation/assets/78005200/4bc77502-7a7e-4ec0-a01f-d3fd77671631)
 
 ![MBTI  INTJ에게 이상적인 연애 _2](https://github.com/larry1121/CardNewsAutomation/assets/78005200/77989c38-6ab0-42a4-8e4e-f2efb4ea8758)
