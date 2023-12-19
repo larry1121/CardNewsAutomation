@@ -48,9 +48,9 @@ CardNewsAutomation은 블로그 포스트 url을 입력으로 받아 카드뉴�
 
 -   설치방법
 
-1.  main\_gui.exe를 다운로드합니다.
+1.  main_gui.zip을 다운로드하고, 압축해제합니다.
 
-    [main_gui.py 다운로드](https://github.com/larry1121/CardNewsAutomation/raw/main/dist/main_gui.zip)
+    [main_gui.zip 다운로드](https://github.com/larry1121/CardNewsAutomation/raw/main/dist/main_gui.zip)
 
 -   실행방법
 
