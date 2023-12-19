@@ -18,9 +18,11 @@ CardNewsAutomation은 블로그 포스트 url을 입력으로 받아 카드뉴�
 
 구동방식:
 
-- 1. url을 입력받아 html을 크롤링
-- 2. Metadata로 TitleCard와 BrandingCard 생성
-- 3. h2태그로 내용을 구분하여 contentsCard 생성
+1. url을 입력받아 html을 크롤링
+
+2. Metadata로 TitleCard와 BrandingCard 생성
+
+3. h2태그로 내용을 구분하여 contentsCard 생성
 
 
 
@@ -68,6 +70,7 @@ CardNewsAutomation은 블로그 포스트 url을 입력으로 받아 카드뉴�
 
 #### 5. 코드 구조
 - `main.py`: 프로그램의 실행점입니다. 카드뉴스 생성을 위한 여러 함수를 호출합니다.
+- `main_gui.py`: main.py의 함수들로 만든 gui입니다.
 - `BlogCrawler.py`: 블로그의 HTML을 크롤링합니다.
 - `TistoryCrawler.py`: 티스토리 블로그에 특화된 크롤링을 수행합니다.
 - `generateCardnews*.py`: 각각의 이미지 카드 (제목, 내용, 브랜딩)를 생성합니다.
