@@ -11,9 +11,9 @@ CardNewsAutomation은 블로그 포스트 url을 입력으로 받아 카드뉴�
 
 구동방식:
 
-1. url을 활용하여 html을 크롤링
-2. Metadata로 TitleCard와 BrandingCard 생성
-3. h2태그로 내용을 구분하여 contentsCard 생성
+1.url을 활용하여 html을 크롤링
+2.Metadata로 TitleCard와 BrandingCard 생성
+3.h2태그로 내용을 구분하여 contentsCard 생성
 
 
 
@@ -27,13 +27,20 @@ CardNewsAutomation은 블로그 포스트 url을 입력으로 받아 카드뉴�
 - Tkinter
 - PyInstaller
 
-#### 3. 설치 방법
+#### 3. 설치 및 실행방법
 
-### 1. gui 실행파일 다운로드
+### 1. gui 실행파일을 사용하는 방법
+
+- 설치방법
+1. main_gui.exe를 다운로드합니다.
+
+- 실행방법
+1. 다운로드한 exe파일을 실행합니다.
 
 
+### 2. 파이썬 코드를 직접 실행하는 방법
 
-### 2. 
+- 설치방법
 1. 이 GitHub 레포지토리를 클론합니다.
 2. 필요한 Python 라이브러리를 설치합니다.
 
@@ -43,7 +50,7 @@ CardNewsAutomation은 블로그 포스트 url을 입력으로 받아 카드뉴�
 3. main.py를 실행합니다.
 
 
-#### 4. 사용 방법
+- 실행방법
 1. `config.py` 파일에서 필요한 설정을 변경합니다. 예를 들어, 폰트 경로, 이미지 크기 등을 설정할 수 있습니다.
 2. `main.py` 파일을 실행합니다.
 
