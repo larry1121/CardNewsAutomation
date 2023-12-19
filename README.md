@@ -18,9 +18,9 @@ CardNewsAutomation은 블로그 포스트 url을 입력으로 받아 카드뉴�
 
 구동방식:
 
-- 1.url을 활용하여 html을 크롤링
-- 2.Metadata로 TitleCard와 BrandingCard 생성
-- 3.h2태그로 내용을 구분하여 contentsCard 생성
+- 1. url을 입력받아 html을 크롤링
+- 2. Metadata로 TitleCard와 BrandingCard 생성
+- 3. h2태그로 내용을 구분하여 contentsCard 생성
 
 
 
