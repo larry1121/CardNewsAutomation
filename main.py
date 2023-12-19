@@ -1,6 +1,7 @@
 import os
 import logging
-from config import HASHTAG
+import config
+from config import BUNDLE_DIR_PATH, HASHTAG
 from generateCardnewsBrandingImageByUrl import generateCardnewsBrandingImageByUrl
 from generateCardnewsContentImagesByUrl import generateCardnewsContentImages
 from generateCardnewsTitleImageByUrl import generateCardnewsTitleImageByUrl
@@ -27,11 +28,12 @@ def get_image_folder_name(blog_url):
     BlogMetaInfo = getBlogMetaInfo(blog_url)
     folder_name = sanitize_filename(remove_emoji(str(BlogMetaInfo['title'])))
     logging.info(f"Folder name created: {folder_name}")
-    return folder_name
+    return os.path.join(config.save_dir_path,folder_name)
 
 def confirm_and_display(folder_name):
     logging.info("Preparing images and caption for display.")
-    photos = [f"{folder_name}/{file}" for file in sorted(os.listdir(folder_name)) if file.endswith(('.jpg', '.jpeg', '.png'))]
+    folder_path = os.path.join(config.save_dir_path,folder_name )
+    photos = [f"{folder_name}/{file}" for file in sorted(os.listdir(folder_path)) if file.endswith(('.jpg', '.jpeg', '.png'))]
     caption_title = folder_name
     hashtag = HASHTAG
     caption = f"{caption_title} {hashtag}"
@@ -51,7 +53,7 @@ def generate_mbti_string(mbti_type):
 
 
 if __name__ == "__main__":
-    test_url ="https://giftedmbti.tistory.com/209"
+    test_url ="https://giftedmbti.tistory.com/167"
 
     folder_name = generate_images(test_url)
     confirm_and_display(folder_name)

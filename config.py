@@ -12,6 +12,17 @@ else:
     # Change this bit to the path where you store your data files:
     bundle_dir = os.path.dirname(os.path.abspath(__file__))
 
+BUNDLE_DIR_PATH = bundle_dir
+
+save_dir_path = bundle_dir
+
+def set_save_path(save_path):
+    global save_dir_path  # 전역 변수임을 명시
+    save_dir_path = save_path
+
+
+
+
 # write ttf file name here
 FONT_PATH = os.path.join(bundle_dir, 'THE소녀감성.ttf')
 

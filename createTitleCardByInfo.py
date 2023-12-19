@@ -1,8 +1,8 @@
 from PIL import Image, ImageDraw, ImageFont
 import os
-
+import config
 from remove_emoji import remove_emoji
-from config import BORDER_COLOR, BORDER_WIDTH, IMAGE_SIZE, FONT_PATH, TEXT_COLOR, BACKGROUND_COLOR, TITLE_BLOG_NAME_FONT_SIZE
+from config import BORDER_COLOR, BORDER_WIDTH,  IMAGE_SIZE, FONT_PATH, TEXT_COLOR, BACKGROUND_COLOR, TITLE_BLOG_NAME_FONT_SIZE
 from sanitize_filename import sanitize_filename
 
 def calculate_font_size(font_path, text, max_size, min_size):
@@ -77,13 +77,24 @@ def createTitleCardByInfo(BlogMetaInfo):
     border_rect = [(0, 0), (size[0] - 1, size[1] - 1)]
     draw.rectangle(border_rect, outline=border_color, width=border_width)
 
-    # 이미지 저장 (as JPG)
-    post_title_sanitized = sanitize_filename(post_title)  # 파일 이름 정제
-    if not os.path.exists(post_title_sanitized):
-        os.makedirs(post_title_sanitized)
-    filename = os.path.join(post_title_sanitized, f"{post_title_sanitized}_0.jpg")  # Save as JPG format
-    image.save(filename, format="JPEG")
-    print(f"Title Image : {post_title_sanitized}.jpg 완성\n\n")
+    # 이미지 저장
+    post_title_sanitized = sanitize_filename(post_title)
+    
+    directory_path = os.path.join(config.save_dir_path, post_title_sanitized)
+
+    try:
+        if not os.path.exists(directory_path):
+            os.makedirs(directory_path)
+
+            
+
+
+        filename = os.path.join(directory_path, f"{post_title_sanitized}_0.jpg")
+        image.save(filename, format="JPEG")
+        print(f"Title Image : {post_title_sanitized}.jpg 저장 완료\n\n")
+    except OSError as e:
+        print(f"파일 저장 오류: {e} ,cwd : {os.getcwd()}")
+        
 
 if __name__ == "__main__":
     # Test with different blog names and post titles

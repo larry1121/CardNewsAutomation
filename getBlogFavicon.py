@@ -1,4 +1,6 @@
+import os
 import requests
+from config import BUNDLE_DIR_PATH
 
 from getBlogMetaInfo import getBlogMetaInfo
 
@@ -18,7 +20,7 @@ def getBlogFavicon(website_url):
         blog_name = BlogMetaInfo['site_name']
 
         # 파일로 저장
-        file_name = f'{blog_name}.ico'
+        file_name = os.path.join(BUNDLE_DIR_PATH, f'{blog_name}.ico')
         with open(file_name, 'wb') as file:
             file.write(response.content)
 

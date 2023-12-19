@@ -4,9 +4,16 @@ from PIL import Image, ImageTk
 import os
 import subprocess
 import logging
+import config
 
 # Import your existing functions
 from main import generate_images, confirm_and_display
+
+from tkinter import filedialog
+
+
+
+
 
 def on_open_folder_click():
     folder_name = folder_name_var.get().replace("Folder name: ", "")
@@ -24,14 +31,19 @@ def log_text_handler(msg):
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logging.getLogger().addHandler(logging.StreamHandler(stream=type('TkinterLogStream', (object,), {'write': log_text_handler})))
 
+import traceback
+
 def on_generate_images_click():
     try:
         url = url_entry.get()
         folder_name = generate_images(url)
         folder_name_var.set(f"Folder name: {folder_name}")
+    except OSError as e:
+        log_text_handler(f"파일 저장 오류: {e} ,cwd : {os.getcwd()}")
     except Exception as e:
-        logging.error(f"Image generation error: {e}")
-        log_text_handler(f"Error during image generation: {e}")
+        tb = traceback.format_exc()  # 에러의 트레이스백을 문자열로 가져옵니다.
+        logging.error(f"Image generation error: {e}\n{tb}")  # 에러와 트레이스백을 로깅합니다.
+        log_text_handler(f"Error during image generation: {e}\n{tb}")  # 사용자 인터페이스에도 표시합니다.
 
 def on_confirm_and_display_click():
     try:
@@ -55,8 +67,10 @@ def on_confirm_and_display_click():
         # Display caption
         suggested_caption_var.set(f"Suggested caption: {caption}")
     except Exception as e:
-        logging.error(f"Confirmation and display error: {e}")
-        log_text_handler(f"Error during confirmation and display: {e}")
+        tb = traceback.format_exc()
+        logging.error(f"Confirmation and display error: {e}\n{tb}")
+        log_text_handler(f"Error during confirmation and display: {e}\n{tb}")
+
 
 # Create the Tkinter window
 root = tk.Tk()
@@ -90,13 +104,13 @@ generate_images_button.grid(row=0, column=2)
 
 folder_name_var = tk.StringVar()
 folder_name_label = ttk.Label(control_frame, textvariable=folder_name_var)
-folder_name_label.grid(row=1, column=1)
+folder_name_label.grid(row=1, column=0)
 
 confirm_and_display_button = ttk.Button(control_frame, text="Confirm and Display", command=on_confirm_and_display_click)
-confirm_and_display_button.grid(row=1, column=2)
+confirm_and_display_button.grid(row=1, column=1)
 
 open_folder_button = ttk.Button(control_frame, text="Open Folder", command=on_open_folder_click)
-open_folder_button.grid(row=1, column=3)
+open_folder_button.grid(row=1, column=2)
 
 # Scrollable Canvas for images
 canvas = Canvas(main_frame)
@@ -111,6 +125,28 @@ canvas_frame.grid(row=0, column=0, sticky='nsew')
 canvas.create_window((0, 0), window=canvas_frame, anchor='nw')
 canvas_frame.bind("<Configure>", lambda event, canvas=canvas: canvas.configure(scrollregion=canvas.bbox("all")))
 canvas.configure(xscrollcommand=scrollbar.set)
+
+#save dir
+def ask_directory():
+    """ 사용자가 디렉토리를 선택할 수 있는 대화상자를 엽니다. """
+    return filedialog.askdirectory()
+def set_save_directory():
+    """ 사용자가 선택한 디렉토리를 저장합니다. """
+    directory = ask_directory()
+    if directory:
+        save_directory.set(directory)
+        config.set_save_path(directory)
+        
+        folder_name_var.set(f"Folder name: {directory}")
+        log_text_handler(f"Save directory set to: {directory}")
+
+choose_dir_button = ttk.Button(control_frame, text="Choose Save Directory", command=set_save_directory)
+choose_dir_button.grid(row=1, column=3)
+save_directory = tk.StringVar()
+
+
+
+
 
 # Additional UI elements
 suggested_caption_var = tk.StringVar()
